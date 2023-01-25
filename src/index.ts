@@ -1,14 +1,17 @@
 import express, { Express } from 'express'
 import dotenv from 'dotenv'
-import { connect } from 'mongoose'
+import mongoose from 'mongoose'
 
 import router from './routes'
 
 dotenv.config()
 
-connect(
-	`mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@counterclaster.9imvrz0.mongodb.net/${process.env.MONGO_DATABASE}?retryWrites=true&w=majority`
-)
+mongoose.set('strictQuery', true)
+
+mongoose
+	.connect(
+		`mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@counterclaster.9imvrz0.mongodb.net/${process.env.MONGO_DATABASE}?retryWrites=true&w=majority`
+	)
 	.then(() => {
 		console.log('[Server]: DB connected')
 	})
