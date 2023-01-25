@@ -1,6 +1,8 @@
-import express, { Express, Request, Response } from 'express'
+import express, { Express } from 'express'
 import dotenv from 'dotenv'
 import { connect } from 'mongoose'
+
+import router from './routes'
 
 dotenv.config()
 
@@ -18,9 +20,7 @@ connect(
 const app: Express = express()
 const port = process.env.PORT
 
-app.get('/', (req: Request, res: Response) => {
-	res.send('Express + TypeScript Server')
-})
+app.use('/', router)
 
 app.listen(port, () => {
 	console.log(`⚡️[server]: Server is running at http://localhost:${port}`)
