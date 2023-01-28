@@ -1,6 +1,11 @@
 import { Schema, model } from 'mongoose'
 
-const colorSchema = new Schema(
+interface IColor {
+	name: string
+	colorHEX: string
+}
+
+const colorSchema = new Schema<IColor>(
 	{
 		name: { type: String, required: true },
 		colorHEX: { type: String, required: true }
@@ -12,4 +17,4 @@ const colorSchema = new Schema(
 
 const Color = model('Color', colorSchema)
 
-export { Color }
+export { Color, IColor }
