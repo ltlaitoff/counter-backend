@@ -7,6 +7,14 @@ import session from 'express-session'
 
 import router from './routes'
 
+declare module 'express-session' {
+	interface SessionData {
+		authorized: boolean
+		name: string
+		email: string
+	}
+}
+
 dotenv.config()
 
 mongoose.set('strictQuery', true)
