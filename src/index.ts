@@ -2,6 +2,7 @@ import express, { Express } from 'express'
 import dotenv from 'dotenv'
 import mongoose from 'mongoose'
 
+import cors from 'cors'
 import router from './routes'
 
 dotenv.config()
@@ -23,7 +24,14 @@ mongoose
 const app: Express = express()
 const port = process.env.PORT
 
-app.use('/', router)
+app.use(
+	cors({
+		origin: 'http://localhost:4200',
+		credentials: true
+	})
+)
+
+app.use(router)
 
 app.listen(port, () => {
 	console.log(`⚡️[server]: Server is running at http://localhost:${port}`)
