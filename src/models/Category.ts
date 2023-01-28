@@ -7,7 +7,7 @@ const categorySchema = new Schema(
 		name: { type: String, required: true },
 		comment: { type: String, required: true },
 		color: { type: Schema.Types.ObjectId, ref: Color, required: true },
-		order: { type: String, required: true }
+		order: { type: Number, required: true }
 	},
 	{
 		timestamps: true
