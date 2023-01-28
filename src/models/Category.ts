@@ -1,7 +1,15 @@
-import { Schema, model } from 'mongoose'
+import { Schema, model, ObjectId } from 'mongoose'
 import { User, Color } from '.'
 
-const categorySchema = new Schema(
+interface ICategory {
+	user: ObjectId
+	name: string
+	comment: string
+	color: ObjectId
+	order: number
+}
+
+const categorySchema = new Schema<ICategory>(
 	{
 		user: { type: Schema.Types.ObjectId, ref: User, required: true },
 		name: { type: String, required: true },
@@ -16,4 +24,4 @@ const categorySchema = new Schema(
 
 const Category = model('Category', categorySchema)
 
-export { Category }
+export { Category, ICategory }
