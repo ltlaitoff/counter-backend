@@ -1,6 +1,16 @@
-import { Schema, model } from 'mongoose'
+import { Schema, model, ObjectId } from 'mongoose'
 
-const userSchema = new Schema(
+interface IUser {
+	_id?: ObjectId
+	name: string
+	picture: string
+	email: string
+	email_verified: boolean
+	given_name: string
+	family_name: string
+}
+
+const userSchema = new Schema<IUser>(
 	{
 		name: { type: String, required: true },
 		picture: { type: String, required: true },
@@ -16,4 +26,4 @@ const userSchema = new Schema(
 
 const User = model('User', userSchema)
 
-export { User }
+export { User, IUser }
