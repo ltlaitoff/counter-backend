@@ -3,6 +3,8 @@ import dotenv from 'dotenv'
 import mongoose from 'mongoose'
 
 import cors from 'cors'
+import session from 'express-session'
+
 import router from './routes'
 
 dotenv.config()
@@ -21,8 +23,19 @@ mongoose
 		console.error('[Server]: DB error connect', err)
 	})
 
+const store = new session.MemoryStore()
 const app: Express = express()
 const port = process.env.PORT
+
+app.use(
+	session({
+		secret: 'keyboard cat',
+		name: 'sessionId',
+		resave: false,
+		saveUninitialized: true,
+		store
+	})
+)
 
 app.use(
 	cors({
