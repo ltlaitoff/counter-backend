@@ -1,6 +1,6 @@
 import express, { Express } from 'express'
 import dotenv from 'dotenv'
-import mongoose from 'mongoose'
+import mongoose, { ObjectId } from 'mongoose'
 
 import cors from 'cors'
 import session from 'express-session'
@@ -10,8 +10,7 @@ import router from './routes'
 declare module 'express-session' {
 	interface SessionData {
 		authorized: boolean
-		name: string
-		email: string
+		userId: ObjectId
 	}
 }
 

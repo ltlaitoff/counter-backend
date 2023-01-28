@@ -31,8 +31,7 @@ export const authorization = (req: Request, res: Response) => {
 			findOrCreateUser(userData)
 				.then(value => {
 					req.session.authorized = true
-					req.session.name = value.name
-					req.session.email = value.email
+					req.session.userId = value._id
 
 					console.log(req.session, value._id)
 					res.status(200).json(value)
