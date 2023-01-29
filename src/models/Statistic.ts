@@ -1,7 +1,9 @@
 import { Schema, model } from 'mongoose'
 import { Category, User } from '.'
 
-const statisticSchema = new Schema(
+import { IStatistic } from '../types/Statistic.types'
+
+const statisticSchema = new Schema<IStatistic>(
 	{
 		user: { type: Schema.Types.ObjectId, ref: User, required: true },
 		date: { type: Date, required: true },
