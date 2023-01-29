@@ -1,9 +1,5 @@
 import { Schema, model } from 'mongoose'
-
-interface IColor {
-	name: string
-	colorHEX: string
-}
+import { IColor } from '../types/Color.types'
 
 const colorSchema = new Schema<IColor>(
 	{
@@ -17,4 +13,4 @@ const colorSchema = new Schema<IColor>(
 
 const Color = model('Color', colorSchema)
 
-export { Color, IColor }
+export { Color }
