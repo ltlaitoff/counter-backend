@@ -12,7 +12,7 @@ export const getAllRecordsRoute = (req: Request, res: Response) => {
 		return unauthorizedError(res)
 	}
 
-	return Statistic.find({ _id: userId }).exec((error, value) => {
+	return Statistic.find({ user: userId }).exec((error, value) => {
 		if (error) {
 			return somethingWentWrongError(res)
 		}
