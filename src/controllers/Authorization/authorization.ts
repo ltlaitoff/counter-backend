@@ -4,6 +4,7 @@ import * as jose from 'jose'
 import { findOrCreateUser } from '../../controllers/User/findOrCreateUser'
 import { authorizationError, somethingWentWrongError } from '../../services'
 import { getUserDataFromJWTPayload } from './getUserDataFromJWTPayload.helper'
+import HttpStatusCode from '../../types/HttpStatusCode'
 
 export const authorization = (req: Request, res: Response) => {
 	const authorization = req.get('authorization')
@@ -34,7 +35,7 @@ export const authorization = (req: Request, res: Response) => {
 					req.session.userId = value._id
 
 					console.log(req.session, value._id)
-					res.status(200).json(value)
+					res.status(HttpStatusCode.OK).json(value)
 				})
 				.catch((error: Error) => {
 					console.log('ERROR', error.name)
