@@ -1,8 +1,11 @@
 import { Response } from 'express'
 import HttpStatusCode from 'types/HttpStatusCode'
 
+/**
+ * Used on user authorization
+ */
 export const authorizationError = (res: Response) => {
 	return res
 		.status(HttpStatusCode.UNAUTHORIZED)
-		.json({ error: 'No credentials sent!' })
+		.json({ error: 'Authorization failed' })
 }

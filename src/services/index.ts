@@ -1,2 +1,1 @@
-export * from './Errors/authorizationError'
-export * from './Errors/somethingWentWrongError'
+export * from './Errors'
