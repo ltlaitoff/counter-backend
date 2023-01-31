@@ -1,6 +1,6 @@
 import { Response, Request } from 'express'
-import HttpStatusCode from '../../types/HttpStatusCode'
-import { getUserById } from '../User/getUserById'
+import HttpStatusCode from 'types/HttpStatusCode'
+import { getUserById } from 'controllers/User'
 
 export const initialize = (req: Request, res: Response) => {
 	if (!req.session.authorized || !req.session.userId) {
