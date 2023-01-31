@@ -1,7 +1,7 @@
 import { findOrCreateColor } from '.'
 import { ObjectId } from 'mongoose'
-import { ColorsNames } from '../../types/Color.types'
-import { DEFAULT_COLORS } from '../../config'
+import { ColorsNames } from 'types/Color.types'
+import { DEFAULT_COLORS } from 'config'
 
 export const initializeDefaultColors = async () => {
 	const colorItems = await Promise.all(
