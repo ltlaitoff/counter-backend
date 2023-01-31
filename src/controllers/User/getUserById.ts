@@ -1,5 +1,5 @@
 import mongoose, { ObjectId } from 'mongoose'
-import { User } from '../../models'
+import { User } from 'models'
 
 export const getUserById = async (id: string | ObjectId) => {
 	let _id: ObjectId | null = null

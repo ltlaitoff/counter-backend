@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose'
 import { Category, User } from '.'
 
-import { IStatistic } from '../types/Statistic.types'
+import { IStatistic } from 'types/Statistic.types'
 
 const statisticSchema = new Schema<IStatistic>(
 	{

@@ -1,4 +1,4 @@
-import { IColor } from '../../types/Color.types'
+import { IColor } from 'types/Color.types'
 import { findColor, createColor } from '.'
 
 export const findOrCreateColor = async (data: IColor) => {

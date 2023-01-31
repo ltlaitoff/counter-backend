@@ -1,5 +1,5 @@
 import mongoose, { ObjectId } from 'mongoose'
-import { Category } from '../../models'
+import { Category } from 'models'
 
 export const getCategoryById = async (categoryId: ObjectId | string) => {
 	let _id = null

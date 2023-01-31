@@ -1,6 +1,6 @@
 import { ObjectId } from 'mongoose'
-import { ColorsNames } from '../../types/Color.types'
-import { initializeDefaultColors } from '../Color'
+import { ColorsNames } from 'types/Color.types'
+import { initializeDefaultColors } from 'controllers/Color'
 import { findOrCreateCategory } from '.'
 
 export const intializeUserDefaultCategories = async (userId: ObjectId) => {

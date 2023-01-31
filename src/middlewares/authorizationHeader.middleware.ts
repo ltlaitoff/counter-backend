@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express'
-import { authorizationError } from '../services/authorizationError'
+import { authorizationError } from 'services/Errors/authorizationError'
 
 export const authorizationHeaderMiddleware = (
 	req: Request,

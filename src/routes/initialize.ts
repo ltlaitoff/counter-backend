@@ -1,5 +1,5 @@
 import Router from 'express'
-import * as initializeContoller from '../controllers/Initialize'
+import * as initializeContoller from 'controllers/Initialize'
 
 const initializeRouter = Router()
 

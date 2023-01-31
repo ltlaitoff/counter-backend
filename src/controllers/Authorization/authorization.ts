@@ -1,10 +1,11 @@
 import { Response, Request } from 'express'
 import * as jose from 'jose'
 
-import { findOrCreateUser } from '../../controllers/User/findOrCreateUser'
-import { authorizationError, somethingWentWrongError } from '../../services'
+import { findOrCreateUser } from 'controllers/User/findOrCreateUser'
+import { authorizationError, somethingWentWrongError } from 'services'
+import HttpStatusCode from 'types/HttpStatusCode'
+
 import { getUserDataFromJWTPayload } from './getUserDataFromJWTPayload.helper'
-import HttpStatusCode from '../../types/HttpStatusCode'
 
 export const authorization = (req: Request, res: Response) => {
 	const authorization = req.get('authorization')
