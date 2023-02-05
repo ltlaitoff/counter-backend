@@ -6,10 +6,10 @@ export const getUserById = async (id: string | ObjectId) => {
 
 	// [ ] TODO: Move it to helper function
 	if (typeof id === 'string') {
-		_id = new mongoose.Schema.Types.ObjectId(id)
+		_id = new mongoose.Types.ObjectId(id) as unknown as ObjectId
 	} else {
 		_id = id
 	}
 
-	return await User.findOne({ _id: _id })
+	return await User.findOne({ _id: _id }).lean()
 }
