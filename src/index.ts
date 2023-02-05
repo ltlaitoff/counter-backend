@@ -4,7 +4,7 @@ import mongoose, { ObjectId } from 'mongoose'
 
 import cors from 'cors'
 import session from 'express-session'
-
+import bodyParser from 'body-parser'
 import router from './routes'
 
 declare module 'express-session' {
@@ -50,6 +50,8 @@ app.use(
 		credentials: true
 	})
 )
+
+app.use(bodyParser.json())
 
 app.use(router)
 
