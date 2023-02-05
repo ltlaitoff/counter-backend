@@ -12,11 +12,17 @@ export const getAllRecordsRoute = (req: Request, res: Response) => {
 		return unauthorizedError(res)
 	}
 
-	return Statistic.find({ user: userId }).exec((error, value) => {
-		if (error) {
-			return somethingWentWrongError(res)
-		}
+	return Statistic.find({ user: userId })
+		.populate({
+			path: 'category',
+			populate: { path: 'color' }
+		})
+		.exec((error, value) => {
+			if (error) {
+				console.log(error)
+				return somethingWentWrongError(res)
+			}
 
-		return res.status(HttpStatusCode.OK).json(value)
-	})
+			return res.status(HttpStatusCode.OK).json(value)
+		})
 }
