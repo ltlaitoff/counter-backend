@@ -36,7 +36,7 @@ export const authorization = (req: Request, res: Response) => {
 					req.session.userId = value._id
 
 					console.log(req.session, value._id)
-					res.status(HttpStatusCode.OK).json(value)
+					res.status(HttpStatusCode.OK).json({ authorized: true, ...value })
 				})
 				.catch((error: Error) => {
 					console.log('ERROR', error.name)
