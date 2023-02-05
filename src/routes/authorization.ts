@@ -4,7 +4,7 @@ import { authorizationHeaderMiddleware } from 'middlewares/authorizationHeader.m
 
 const authorizationRouter = Router()
 
-authorizationRouter.use(authorizationHeaderMiddleware)
+authorizationRouter.use('/authorization', authorizationHeaderMiddleware)
 
 authorizationRouter.post('/authorization', authorizationContoller.authorization)
 
