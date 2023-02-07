@@ -4,11 +4,11 @@ import { getSessionUserId, stringValidation } from 'helpers'
 import { unauthorizedError } from 'services'
 
 import { Category } from 'models'
-import { ICategory } from 'types'
+import { Category as CategoryType } from 'types'
 import {} from '../../helpers/validators/string'
 import { getLastCategoryOrder } from './getLastCategoryOrder'
 
-type RecordBody = Omit<ICategory, 'color' | 'user' | 'order'> & {
+type RecordBody = Omit<CategoryType, 'color' | 'user' | 'order'> & {
 	color: string
 }
 
@@ -49,7 +49,7 @@ export const addCategoryRoute = async (req: Request, res: Response) => {
 
 	const lastOrderId = await getLastCategoryOrder()
 
-	const dataForAdd: Omit<ICategory, 'color'> & {
+	const dataForAdd: Omit<CategoryType, 'color'> & {
 		color: string
 	} = {
 		user: userId,
