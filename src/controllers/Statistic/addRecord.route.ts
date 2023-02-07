@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 
-import { IStatistic } from 'types/Statistic.types'
+import { IStatistic } from 'types'
 import {
 	getSessionUserId,
 	numberValidation,
