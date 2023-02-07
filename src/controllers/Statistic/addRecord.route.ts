@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 
-import { IStatistic } from 'types'
+import { Statistic as StatisticType } from 'types'
 import {
 	getSessionUserId,
 	numberValidation,
@@ -10,7 +10,7 @@ import {
 import { unauthorizedError } from 'services'
 import { Statistic } from 'models'
 
-type RecordBody = Omit<Omit<Omit<IStatistic, 'user'>, '_id'>, 'category'> & {
+type RecordBody = Omit<Omit<Omit<StatisticType, 'user'>, '_id'>, 'category'> & {
 	category: string
 }
 

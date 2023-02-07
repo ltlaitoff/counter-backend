@@ -1,6 +1,6 @@
 import { ObjectId } from 'mongoose'
 
-export interface IStatistic {
+export interface Statistic {
 	_id?: ObjectId
 	user: ObjectId
 	date: Date
