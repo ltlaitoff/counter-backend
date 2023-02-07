@@ -1,4 +1,4 @@
-import { ICategory } from 'models'
+import { ICategory } from 'types'
 import { findCategory, createCategory } from '.'
 
 export const findOrCreateCategory = async (data: ICategory) => {

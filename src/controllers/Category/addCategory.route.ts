@@ -3,7 +3,8 @@ import { Request, Response } from 'express'
 import { getSessionUserId, stringValidation } from 'helpers'
 import { unauthorizedError } from 'services'
 
-import { Category, ICategory } from 'models/Category'
+import { Category } from 'models'
+import { ICategory } from 'types'
 import {} from '../../helpers/validators/string'
 import { getLastCategoryOrder } from './getLastCategoryOrder'
 
