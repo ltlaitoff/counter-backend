@@ -1,5 +1,5 @@
 import { ObjectId } from 'mongoose'
-import { ColorsNames } from 'types/Color.types'
+import { ColorsNames } from 'types'
 import { initializeDefaultColors } from 'controllers/Color'
 import { findOrCreateCategory } from '.'
 
