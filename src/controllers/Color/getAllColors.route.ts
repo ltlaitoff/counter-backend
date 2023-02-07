@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 
 import { Color } from 'models/Color'
-import { somethingWentWrongError } from 'services'
+import { somethingWentWrongError } from 'helpers'
 
 import { HttpStatusCode } from 'types'
 

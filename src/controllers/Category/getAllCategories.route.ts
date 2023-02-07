@@ -2,7 +2,7 @@ import { Request, Response } from 'express'
 
 import { getSessionUserId } from 'helpers'
 import { Category } from 'models/Category'
-import { unauthorizedError, somethingWentWrongError } from 'services'
+import { unauthorizedError, somethingWentWrongError } from 'helpers'
 import { HttpStatusCode } from 'types'
 
 export const getAllCategoriesRoute = (req: Request, res: Response) => {

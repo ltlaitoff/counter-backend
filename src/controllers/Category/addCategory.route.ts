@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 
 import { getSessionUserId, stringValidation } from 'helpers'
-import { unauthorizedError } from 'services'
+import { unauthorizedError } from 'helpers'
 
 import { Category } from 'models'
 import { Category as CategoryType } from 'types'

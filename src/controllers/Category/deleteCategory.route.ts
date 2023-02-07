@@ -3,7 +3,7 @@ import { Request, Response } from 'express'
 import { Category } from 'models'
 
 import { getSessionUserId } from 'helpers'
-import { unauthorizedError } from 'services'
+import { unauthorizedError } from 'helpers'
 
 export const deleteCategoryRoute = async (
 	req: Request<{ id: string }>,

@@ -7,7 +7,7 @@ import {
 	dateValidation,
 	stringValidation
 } from 'helpers'
-import { unauthorizedError } from 'services'
+import { unauthorizedError } from 'helpers'
 import { Statistic } from 'models'
 
 type RecordBody = Omit<Omit<Omit<StatisticType, 'user'>, '_id'>, 'category'> & {

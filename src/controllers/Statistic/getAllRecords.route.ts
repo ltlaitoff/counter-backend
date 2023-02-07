@@ -2,7 +2,7 @@ import { Request, Response } from 'express'
 
 import { getSessionUserId } from 'helpers'
 import { Statistic } from 'models/Statistic'
-import { unauthorizedError, somethingWentWrongError } from 'services'
+import { unauthorizedError, somethingWentWrongError } from 'helpers'
 import { HttpStatusCode } from 'types'
 
 export const getAllRecordsRoute = (req: Request, res: Response) => {

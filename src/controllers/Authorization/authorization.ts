@@ -2,7 +2,7 @@ import { Response, Request } from 'express'
 import * as jose from 'jose'
 
 import { findOrCreateUser } from 'controllers/User/findOrCreateUser'
-import { authorizationError, somethingWentWrongError } from 'services'
+import { authorizationError, somethingWentWrongError } from 'helpers'
 import { HttpStatusCode } from 'types'
 
 import { getUserDataFromJWTPayload } from './getUserDataFromJWTPayload.helper'
