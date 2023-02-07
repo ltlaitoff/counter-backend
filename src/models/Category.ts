@@ -1,13 +1,6 @@
-import { Schema, model, ObjectId } from 'mongoose'
+import { Schema, model } from 'mongoose'
+import { ICategory } from 'types'
 import { User, Color } from '.'
-
-interface ICategory {
-	user: ObjectId
-	name: string
-	comment: string
-	color: ObjectId
-	order: number
-}
 
 const categorySchema = new Schema<ICategory>(
 	{
@@ -24,4 +17,4 @@ const categorySchema = new Schema<ICategory>(
 
 const Category = model('Category', categorySchema)
 
-export { Category, ICategory }
+export { Category }
