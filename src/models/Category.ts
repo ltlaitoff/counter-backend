@@ -1,8 +1,8 @@
 import { Schema, model } from 'mongoose'
-import { Category } from 'types'
+import { Category as CategoryType } from 'types'
 import { User, Color } from '.'
 
-const categorySchema = new Schema<Category>(
+const categorySchema = new Schema<CategoryType>(
 	{
 		user: { type: Schema.Types.ObjectId, ref: User, required: true },
 		name: { type: String, required: true },
