@@ -3,7 +3,7 @@ import * as jose from 'jose'
 
 import { findOrCreateUser } from 'controllers/User/findOrCreateUser'
 import { authorizationError, somethingWentWrongError } from 'services'
-import HttpStatusCode from 'types/HttpStatusCode'
+import { HttpStatusCode } from 'types'
 
 import { getUserDataFromJWTPayload } from './getUserDataFromJWTPayload.helper'
 

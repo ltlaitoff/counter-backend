@@ -1,5 +1,5 @@
 import { Response, Request } from 'express'
-import HttpStatusCode from 'types/HttpStatusCode'
+import { HttpStatusCode } from 'types'
 import { getUserById } from 'controllers/User'
 
 export const initialize = async (req: Request, res: Response) => {

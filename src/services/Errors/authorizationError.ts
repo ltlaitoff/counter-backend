@@ -1,5 +1,5 @@
 import { Response } from 'express'
-import HttpStatusCode from 'types/HttpStatusCode'
+import { HttpStatusCode } from 'types'
 
 /**
  * Used on user authorization
