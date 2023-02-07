@@ -1,6 +1,6 @@
 import { ObjectId } from 'mongoose'
 
-export enum ColorsNames {
+export const enum ColorsNames {
 	RED = 'red',
 	GREEN = 'green',
 	BLUE = 'blue'

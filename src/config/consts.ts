@@ -1,16 +1,16 @@
-import { ColorsNames } from 'types'
+import { ColorTypes } from 'Color'
 
 export const DEFAULT_COLORS = [
 	{
-		name: ColorsNames.RED,
+		name: ColorTypes.ColorsNames.RED,
 		colorHEX: '#ff0000'
 	},
 	{
-		name: ColorsNames.GREEN,
+		name: ColorTypes.ColorsNames.GREEN,
 		colorHEX: '#00ff00'
 	},
 	{
-		name: ColorsNames.BLUE,
+		name: ColorTypes.ColorsNames.BLUE,
 		colorHEX: '#0000ff'
 	}
 ]

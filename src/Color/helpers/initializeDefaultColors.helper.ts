@@ -1,15 +1,16 @@
-import { findOrCreateColor } from '.'
 import { ObjectId } from 'mongoose'
-import { ColorsNames } from 'types'
+
 import { DEFAULT_COLORS } from 'config'
+import { ColorTypes, ColorHelpers } from '..'
 
 export const initializeDefaultColors = async () => {
 	const colorItems = await Promise.all(
 		DEFAULT_COLORS.map(defaultColorItem => {
-			return findOrCreateColor(defaultColorItem)
+			return ColorHelpers.findOrCreateColor(defaultColorItem)
 		})
 	)
 
+	// TODO: Remove any type
 	const resultObject: any = {}
 
 	colorItems.forEach(item => {
@@ -18,5 +19,5 @@ export const initializeDefaultColors = async () => {
 		}
 	})
 
-	return resultObject as { [key in ColorsNames]: ObjectId }
+	return resultObject as { [key in ColorTypes.ColorsNames]: ObjectId }
 }

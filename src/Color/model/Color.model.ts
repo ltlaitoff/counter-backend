@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose'
-import { Color as ColorType } from 'types'
+import { ColorTypes } from '..'
 
-const colorSchema = new Schema<ColorType>(
+const colorSchema = new Schema<ColorTypes.Color>(
 	{
 		name: { type: String, required: true },
 		colorHEX: { type: String, required: true }
@@ -13,4 +13,4 @@ const colorSchema = new Schema<ColorType>(
 
 const Color = model('Color', colorSchema)
 
-export { Color }
+export default Color
