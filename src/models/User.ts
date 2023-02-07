@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose'
-import { IUser } from 'types'
+import { User as UserType } from 'types'
 
-const userSchema = new Schema<IUser>(
+const userSchema = new Schema<UserType>(
 	{
 		name: { type: String, required: true },
 		picture: { type: String, required: true },

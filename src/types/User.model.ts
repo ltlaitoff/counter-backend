@@ -1,6 +1,6 @@
 import { ObjectId } from 'mongoose'
 
-export interface IUser {
+export interface User {
 	_id?: ObjectId
 	name: string
 	picture: string
