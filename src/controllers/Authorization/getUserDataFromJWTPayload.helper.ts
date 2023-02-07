@@ -1,6 +1,6 @@
 import * as jose from 'jose'
 
-import { IUser } from 'models'
+import { IUser } from 'types'
 
 function getFieldFromPayload<T>(
 	payload: jose.JWTPayload,

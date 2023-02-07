@@ -1,4 +1,4 @@
-import { IUser } from 'models'
+import { IUser } from 'types'
 import { checkIsUserExists, createUser } from '.'
 
 export const findOrCreateUser = async (data: IUser): Promise<IUser> => {

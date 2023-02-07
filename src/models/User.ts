@@ -1,14 +1,5 @@
-import { Schema, model, ObjectId } from 'mongoose'
-
-interface IUser {
-	_id?: ObjectId
-	name: string
-	picture: string
-	email: string
-	email_verified: boolean
-	given_name: string
-	family_name: string
-}
+import { Schema, model } from 'mongoose'
+import { IUser } from 'types'
 
 const userSchema = new Schema<IUser>(
 	{
@@ -26,4 +17,4 @@ const userSchema = new Schema<IUser>(
 
 const User = model('User', userSchema)
 
-export { User, IUser }
+export { User }
