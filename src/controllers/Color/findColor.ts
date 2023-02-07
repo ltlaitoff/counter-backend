@@ -1,6 +1,6 @@
 import { Color } from 'models'
-import { IColor } from 'types'
+import { Color as ColorType } from 'types'
 
-export const findColor = async (data: IColor) => {
+export const findColor = async (data: ColorType) => {
 	return await Color.findOne(data)
 }

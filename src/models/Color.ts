@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose'
-import { IColor } from 'types'
+import { Color as ColorType } from 'types'
 
-const colorSchema = new Schema<IColor>(
+const colorSchema = new Schema<ColorType>(
 	{
 		name: { type: String, required: true },
 		colorHEX: { type: String, required: true }

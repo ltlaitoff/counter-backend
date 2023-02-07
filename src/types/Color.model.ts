@@ -6,7 +6,7 @@ export enum ColorsNames {
 	BLUE = 'blue'
 }
 
-export interface IColor {
+export interface Color {
 	_id?: ObjectId
 	name: ColorsNames
 	colorHEX: string

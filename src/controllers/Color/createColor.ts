@@ -1,6 +1,6 @@
 import { Color } from 'models'
-import { IColor } from 'types'
+import { Color as ColorType } from 'types'
 
-export const createColor = (data: IColor) => {
+export const createColor = (data: ColorType) => {
 	return Color.create(data)
 }
