@@ -1,25 +1,32 @@
 import * as jose from 'jose'
 
 import { UserTypes } from 'User'
-
-function getFieldFromPayload<T>(
-	payload: jose.JWTPayload,
-	key: string
-): T | null {
-	if (payload[key]) return payload[key] as T
-
-	return null
-}
+import { AuthorizationHelpers } from 'Authorization'
 
 export const getUserDataFromJWTPayload = (
 	payload: jose.JWTPayload
 ): UserTypes.User | null => {
-	const name = getFieldFromPayload<string>(payload, 'name')
-	const picture = getFieldFromPayload<string>(payload, 'picture')
-	const email = getFieldFromPayload<string>(payload, 'email')
-	const email_verified = getFieldFromPayload<boolean>(payload, 'email_verified')
-	const given_name = getFieldFromPayload<string>(payload, 'given_name')
-	const family_name = getFieldFromPayload<string>(payload, 'family_name')
+	const name = AuthorizationHelpers.getFieldFromPayload<string>(payload, 'name')
+	const picture = AuthorizationHelpers.getFieldFromPayload<string>(
+		payload,
+		'picture'
+	)
+	const email = AuthorizationHelpers.getFieldFromPayload<string>(
+		payload,
+		'email'
+	)
+	const email_verified = AuthorizationHelpers.getFieldFromPayload<boolean>(
+		payload,
+		'email_verified'
+	)
+	const given_name = AuthorizationHelpers.getFieldFromPayload<string>(
+		payload,
+		'given_name'
+	)
+	const family_name = AuthorizationHelpers.getFieldFromPayload<string>(
+		payload,
+		'family_name'
+	)
 
 	if (
 		name === null ||
