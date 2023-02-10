@@ -1,2 +1,2 @@
-export { FindColorOptions } from './Options'
-export { Color, ColorsNames } from './Color'
+export { FindColorOptions } from './Options.types'
+export { Color, ColorsNames } from './Color.types'
