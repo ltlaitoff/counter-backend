@@ -1,11 +1,11 @@
 import { User as UserType } from 'types'
 import { User } from 'models'
-import { intializeUserDefaultCategories } from 'controllers/Category'
+import { CategoryHelpers } from 'Category'
 
 export const createUser = async (data: UserType) => {
 	const user = await User.create(data)
 
-	intializeUserDefaultCategories(user._id)
+	CategoryHelpers.intializeUserDefaultCategories(user._id)
 
 	return user
 }

@@ -1,7 +1,7 @@
 import { ObjectId } from 'mongoose'
 import { ColorHelpers, ColorTypes } from 'Color'
 
-import { findOrCreateCategory } from '.'
+import { CategoryHelpers } from '..'
 
 export const intializeUserDefaultCategories = async (userId: ObjectId) => {
 	const colors = await ColorHelpers.initializeDefaultColors()
@@ -30,6 +30,9 @@ export const intializeUserDefaultCategories = async (userId: ObjectId) => {
 	console.log(DEFAULT_CATEGORIES)
 
 	return DEFAULT_CATEGORIES.map(defaultCategory => {
-		return findOrCreateCategory({ user: userId, ...defaultCategory })
+		return CategoryHelpers.findOrCreateCategory({
+			user: userId,
+			...defaultCategory
+		})
 	})
 }

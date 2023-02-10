@@ -1,9 +1,9 @@
 import { Schema, model } from 'mongoose'
-import { Category as CategoryType } from 'types'
-import { User } from '.'
+import { CategoryTypes } from '..'
+import { User } from '../../models'
 import { ColorModel } from 'Color'
 
-const categorySchema = new Schema<CategoryType>(
+const categorySchema = new Schema<CategoryTypes.Category>(
 	{
 		user: { type: Schema.Types.ObjectId, ref: User, required: true },
 		name: { type: String, required: true },
@@ -18,4 +18,4 @@ const categorySchema = new Schema<CategoryType>(
 
 const Category = model('Category', categorySchema)
 
-export { Category }
+export default Category

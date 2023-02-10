@@ -1,5 +1,5 @@
 import mongoose, { ObjectId } from 'mongoose'
-import { Category } from 'models'
+import { CategoryModel } from '..'
 
 export const getCategoryById = async (categoryId: ObjectId | string) => {
 	let _id = null
@@ -11,5 +11,6 @@ export const getCategoryById = async (categoryId: ObjectId | string) => {
 		_id = categoryId
 	}
 
-	return await Category.findOne({ _id: _id })
+	// TODO: Change it to servive
+	return await CategoryModel.findOne({ _id: _id })
 }

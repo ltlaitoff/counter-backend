@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 
 import { getSessionUserId } from 'helpers'
-import { Category } from 'models/Category'
+import { CategoryModel } from '..'
 import { unauthorizedError, somethingWentWrongError } from 'helpers'
 import { HttpStatusCode } from 'types'
 
@@ -12,7 +12,7 @@ export const getAllCategoriesRoute = (req: Request, res: Response) => {
 		return unauthorizedError(res)
 	}
 
-	return Category.find({ user: userId }, '-__v -createdAt -updatedAt')
+	return CategoryModel.find({ user: userId }, '-__v -createdAt -updatedAt')
 		.populate('color', '-_id -__v -createdAt -updatedAt')
 		.exec((error, value) => {
 			if (error) {

@@ -1,14 +1,10 @@
 import { Request, Response } from 'express'
 
-import { getSessionUserId, stringValidation } from 'helpers'
-import { unauthorizedError } from 'helpers'
+import { getSessionUserId, stringValidation, unauthorizedError } from 'helpers'
 
-import { Category } from 'models'
-import { Category as CategoryType } from 'types'
-import {} from '../../helpers/validators/string'
-import { getLastCategoryOrder } from './getLastCategoryOrder'
+import { CategoryModel, CategoryHelpers, CategoryTypes } from '..'
 
-type RecordBody = Omit<CategoryType, 'color' | 'user' | 'order'> & {
+type RecordBody = Omit<CategoryTypes.Category, 'color' | 'user' | 'order'> & {
 	color: string
 }
 
@@ -47,9 +43,9 @@ export const addCategoryRoute = async (req: Request, res: Response) => {
 		return unauthorizedError(res)
 	}
 
-	const lastOrderId = await getLastCategoryOrder()
+	const lastOrderId = await CategoryHelpers.getLastCategoryOrder()
 
-	const dataForAdd: Omit<CategoryType, 'color'> & {
+	const dataForAdd: Omit<CategoryTypes.Category, 'color'> & {
 		color: string
 	} = {
 		user: userId,
@@ -57,7 +53,7 @@ export const addCategoryRoute = async (req: Request, res: Response) => {
 		order: lastOrderId === null ? 0 : lastOrderId + 1
 	}
 
-	Category.create(dataForAdd, (error, document) => {
+	CategoryModel.create(dataForAdd, (error, document) => {
 		res.status(200).json(document)
 	})
 }

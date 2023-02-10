@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 
-import { Category } from 'models'
+import { CategoryModel } from '..'
 
 import { getSessionUserId } from 'helpers'
 import { unauthorizedError } from 'helpers'
@@ -19,7 +19,7 @@ export const deleteCategoryRoute = async (
 		return unauthorizedError(res)
 	}
 
-	Category.deleteOne(
+	CategoryModel.deleteOne(
 		{
 			_id: idForDelete,
 			user: userId
