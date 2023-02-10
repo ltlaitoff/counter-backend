@@ -1,12 +1,12 @@
 import { Schema, model } from 'mongoose'
 import { CategoryModel } from 'Category'
-import { User } from '../../models'
+import { UserModel } from 'User'
 
 import { StatisticTypes } from '..'
 
 const statisticSchema = new Schema<StatisticTypes.Statistic>(
 	{
-		user: { type: Schema.Types.ObjectId, ref: User, required: true },
+		user: { type: Schema.Types.ObjectId, ref: UserModel, required: true },
 		date: { type: Date, required: true },
 		count: { type: Number, required: true },
 		comment: { type: String, required: true },

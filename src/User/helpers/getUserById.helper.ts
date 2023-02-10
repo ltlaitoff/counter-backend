@@ -1,5 +1,5 @@
 import mongoose, { ObjectId } from 'mongoose'
-import { User } from 'models'
+import { UserServices } from '..'
 
 export const getUserById = async (id: string | ObjectId) => {
 	let _id: ObjectId | null = null
@@ -11,5 +11,7 @@ export const getUserById = async (id: string | ObjectId) => {
 		_id = id
 	}
 
-	return await User.findOne({ _id: _id }).lean()
+	const findedUser = await UserServices.findUser({ _id: _id })
+
+	return findedUser
 }

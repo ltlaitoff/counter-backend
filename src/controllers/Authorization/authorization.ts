@@ -1,7 +1,7 @@
 import { Response, Request } from 'express'
 import * as jose from 'jose'
 
-import { findOrCreateUser } from 'controllers/User/findOrCreateUser'
+import { UserHelpers } from 'User'
 import { authorizationError, somethingWentWrongError } from 'helpers'
 import { HttpStatusCode } from 'types'
 
@@ -30,7 +30,7 @@ export const authorization = (req: Request, res: Response) => {
 				return somethingWentWrongError(res)
 			}
 
-			findOrCreateUser(userData)
+			UserHelpers.findOrCreateUser(userData)
 				.then(value => {
 					req.session.authorized = true
 					req.session.userId = value._id

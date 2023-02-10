@@ -1,6 +1,6 @@
 import * as jose from 'jose'
 
-import { User as UserType } from 'types'
+import { UserTypes } from 'User'
 
 function getFieldFromPayload<T>(
 	payload: jose.JWTPayload,
@@ -13,7 +13,7 @@ function getFieldFromPayload<T>(
 
 export const getUserDataFromJWTPayload = (
 	payload: jose.JWTPayload
-): UserType | null => {
+): UserTypes.User | null => {
 	const name = getFieldFromPayload<string>(payload, 'name')
 	const picture = getFieldFromPayload<string>(payload, 'picture')
 	const email = getFieldFromPayload<string>(payload, 'email')
