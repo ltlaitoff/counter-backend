@@ -1,4 +1,3 @@
-import { ROUTER_PATH } from './config'
 import * as helpers from './helpers'
 import * as types from './types'
 import * as services from './services'
@@ -12,8 +11,7 @@ export default {
 }
 
 const CategoryRouter = {
-	router,
-	path: ROUTER_PATH
+	router
 }
 
 export {

@@ -8,10 +8,10 @@ import { InitializeRouter } from 'Initialize'
 
 const rootRouter = Router()
 
-rootRouter.use(ColorRouter.path, ColorRouter.router)
-rootRouter.use(CategoryRouter.path, CategoryRouter.router)
-rootRouter.use(StatisticRouter.path, StatisticRouter.router)
-rootRouter.use(AuthorizationRouter.path, AuthorizationRouter.router)
-rootRouter.use(InitializeRouter.path, InitializeRouter.router)
+rootRouter.use('/color', ColorRouter.router)
+rootRouter.use('/category', CategoryRouter.router)
+rootRouter.use('/statistic', StatisticRouter.router)
+rootRouter.use('/authorization', AuthorizationRouter.router)
+rootRouter.use('/initialize', InitializeRouter.router)
 
 export default rootRouter

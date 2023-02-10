@@ -1,11 +1,9 @@
-import { ROUTER_PATH } from './config'
 import * as helpers from './helpers'
 
 import router from './authorization.router'
 
 const AuthorizationRouter = {
-	router,
-	path: ROUTER_PATH
+	router
 }
 
 export { helpers as AuthorizationHelpers, AuthorizationRouter }
