@@ -6,6 +6,7 @@ import { CategoryHelpers } from '..'
 export const intializeUserDefaultCategories = async (userId: ObjectId) => {
 	const colors = await ColorHelpers.initializeDefaultColors()
 
+	// TODO: Move it
 	const DEFAULT_CATEGORIES = [
 		{
 			name: 'Pull-ups',
