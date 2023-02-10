@@ -1,1 +1,0 @@
-export { authorization } from './authorization'

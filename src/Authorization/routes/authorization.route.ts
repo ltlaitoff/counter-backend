@@ -5,9 +5,9 @@ import { UserHelpers } from 'User'
 import { authorizationError, somethingWentWrongError } from 'helpers'
 import { HttpStatusCode } from 'types'
 
-import { getUserDataFromJWTPayload } from './getUserDataFromJWTPayload.helper'
+import { AuthorizationHelpers } from '..'
 
-export const authorization = (req: Request, res: Response) => {
+export const authorizationRoute = (req: Request, res: Response) => {
 	const authorization = req.get('authorization')
 	if (!authorization) return authorizationError(res)
 
@@ -24,7 +24,9 @@ export const authorization = (req: Request, res: Response) => {
 	jose
 		.jwtVerify(authorization, jwkGoogleKeys)
 		.then(value => {
-			const userData = getUserDataFromJWTPayload(value.payload)
+			const userData = AuthorizationHelpers.getUserDataFromJWTPayload(
+				value.payload
+			)
 
 			if (userData === null) {
 				return somethingWentWrongError(res)
