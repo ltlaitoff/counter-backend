@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 
-import { Statistic as StatisticType } from 'types'
+import { StatisticTypes, StatisticServices } from '..'
 import {
 	getSessionUserId,
 	numberValidation,
@@ -8,9 +8,11 @@ import {
 	stringValidation
 } from 'helpers'
 import { unauthorizedError } from 'helpers'
-import { Statistic } from 'models'
 
-type RecordBody = Omit<Omit<Omit<StatisticType, 'user'>, '_id'>, 'category'> & {
+type RecordBody = Omit<
+	Omit<Omit<StatisticTypes.Statistic, 'user'>, '_id'>,
+	'category'
+> & {
 	category: string
 }
 
@@ -45,26 +47,11 @@ const recordBodyValidation = (body: Request['body']): null | RecordBody => {
 	}
 }
 
-export const addRecordRoute = (req: Request, res: Response) => {
-	// TODO: Connect bodyparser
-
-	console.log(
-		'%caddRecord.route.ts line:83 rer.body',
-		'color: #007acc;',
-		req.body
-	)
-
+export const addRecordRoute = async (req: Request, res: Response) => {
 	const validBodyData = recordBodyValidation(req.body)
-
-	console.log(
-		'%caddRecord.route.ts line:105 validBodyData',
-		'color: #007acc;',
-		validBodyData
-	)
 
 	if (validBodyData === null) {
 		console.log('error recordBodyValidation')
-		// TODO
 		return res.status(404)
 	}
 
@@ -74,7 +61,10 @@ export const addRecordRoute = (req: Request, res: Response) => {
 		return unauthorizedError(res)
 	}
 
-	Statistic.create({ user: userId, ...validBodyData }, (error, document) => {
-		console.log(error, document)
-	})
+	const createdRecord = await StatisticServices.createRecord({
+		user: userId,
+		...validBodyData
+	} as StatisticTypes.CreateRecord)
+
+	console.log('createdRecord: ', createdRecord)
 }

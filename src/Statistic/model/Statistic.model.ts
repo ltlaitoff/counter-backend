@@ -1,10 +1,10 @@
 import { Schema, model } from 'mongoose'
 import { CategoryModel } from 'Category'
-import { User } from '.'
+import { User } from '../../models'
 
-import { Statistic as StatisticType } from 'types'
+import { StatisticTypes } from '..'
 
-const statisticSchema = new Schema<StatisticType>(
+const statisticSchema = new Schema<StatisticTypes.Statistic>(
 	{
 		user: { type: Schema.Types.ObjectId, ref: User, required: true },
 		date: { type: Date, required: true },
@@ -24,4 +24,4 @@ const statisticSchema = new Schema<StatisticType>(
 
 const Statistic = model('Statistic', statisticSchema)
 
-export { Statistic }
+export default Statistic
