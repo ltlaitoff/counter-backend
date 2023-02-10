@@ -1,7 +1,3 @@
-import router from './initialize.router'
-
-const InitializeRouter = {
-	router
-}
+import InitializeRouter from './initialize.router'
 
 export { InitializeRouter }
