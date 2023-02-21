@@ -1,4 +1,3 @@
-export { findOrCreateColor } from './findOrCreateColor.helper'
 export { initializeDefaultColors } from './initializeDefaultColors.helper'
 export { removeUnUsedColors } from './removeUnUsedColors.helper'
 export { createOrUpdateColors } from './createOrUpdateColors.helper'
