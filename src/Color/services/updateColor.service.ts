@@ -1,9 +1,11 @@
 import { Schema } from 'mongoose'
-import { ColorModel, ColorTypes } from '..'
+import { ColorModel, ColorTypes, ColorUtils } from '..'
 
-export const updateColor = (
+export const updateColor = async (
 	_id: Schema.Types.ObjectId,
 	data: Partial<ColorTypes.Color>
 ) => {
-	return ColorModel.updateOne({ _id }, data)
+	ColorUtils.serviceDebugMessage('update', String(_id), JSON.stringify(data))
+
+	return await ColorModel.updateOne({ _id }, data)
 }

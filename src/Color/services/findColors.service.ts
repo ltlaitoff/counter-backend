@@ -1,9 +1,16 @@
 import { ColorModel, ColorTypes } from '..'
+import { ColorUtils } from 'Color'
 
 export const findColors = async (
 	data?: ColorTypes.Color,
 	options: ColorTypes.FindColorOptions = { withoutCreating: true }
 ) => {
+	ColorUtils.serviceDebugMessage(
+		'find',
+		JSON.stringify(data),
+		JSON.stringify(options)
+	)
+
 	const dataForSearch: ColorTypes.Color | Record<string, never> =
 		data !== undefined ? data : {}
 
@@ -11,5 +18,5 @@ export const findColors = async (
 		options.withoutCreating ? '-createdAt -updatedAt' : ''
 	}`
 
-	return await ColorModel.find(dataForSearch, projection)
+	return await ColorModel.find(dataForSearch, projection).lean()
 }
