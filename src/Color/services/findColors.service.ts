@@ -7,7 +7,8 @@ export const findColors = async (
 ) => {
 	ColorUtils.serviceDebugMessage(
 		'find',
-		JSON.stringify(data),
+		'all',
+		data !== undefined ? JSON.stringify(data) : '',
 		JSON.stringify(options)
 	)
 
