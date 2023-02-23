@@ -11,7 +11,8 @@ export const createOrUpdateColors = (
 		const findedColor = all.find(color => {
 			return (
 				defaultColor.name === color.name ||
-				defaultColor.colorHEX === color.colorHEX
+				defaultColor.colorHEX === color.colorHEX ||
+				defaultColor.order === color.order
 			)
 		})
 
@@ -22,7 +23,8 @@ export const createOrUpdateColors = (
 
 		if (
 			findedColor.name !== defaultColor.name ||
-			findedColor.colorHEX !== defaultColor.colorHEX
+			findedColor.colorHEX !== defaultColor.colorHEX ||
+			findedColor.order !== defaultColor.order
 		) {
 			ColorServices.updateColor(findedColor._id, defaultColor)
 			return
