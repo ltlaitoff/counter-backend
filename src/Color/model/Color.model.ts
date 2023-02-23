@@ -4,7 +4,8 @@ import { ColorTypes } from '..'
 const colorSchema = new Schema<ColorTypes.Color>(
 	{
 		name: { type: String, required: true },
-		colorHEX: { type: String, required: true }
+		colorHEX: { type: String, required: true },
+		order: { type: Number, required: true }
 	},
 	{
 		timestamps: true

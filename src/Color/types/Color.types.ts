@@ -15,4 +15,5 @@ export interface Color {
 	_id?: ObjectId
 	name: ColorsNames
 	colorHEX: string
+	order: number
 }
