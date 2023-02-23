@@ -1,55 +1,36 @@
 import { ColorTypes } from 'Color'
 
-/*
-	TODO: Create default colors
-*/
 export const DEFAULT_COLORS = [
 	{
+		name: ColorTypes.ColorsNames.GRAY,
+		colorHEX: '#6b7280'
+	},
+	{
 		name: ColorTypes.ColorsNames.RED,
-		colorHEX: '#f87171'
+		colorHEX: '#ef4444'
 	},
 	{
-		name: ColorTypes.ColorsNames.BLUE,
-		colorHEX: '#60a5fa'
-	},
-	{
-		name: ColorTypes.ColorsNames.SLATE,
-		colorHEX: '#475569'
-	},
-	{
-		name: ColorTypes.ColorsNames.ORANGE,
-		colorHEX: '#fb923c'
+		name: ColorTypes.ColorsNames.AMBER,
+		colorHEX: '#f59e0b'
 	},
 	{
 		name: ColorTypes.ColorsNames.LIME,
-		colorHEX: '#a3e635'
-	},
-	{
-		name: ColorTypes.ColorsNames.GREEN,
-		colorHEX: '#4ade80'
+		colorHEX: '#84cc16'
 	},
 	{
 		name: ColorTypes.ColorsNames.EMERALD,
-		colorHEX: '#34d399'
+		colorHEX: '#10b981'
 	},
 	{
-		name: ColorTypes.ColorsNames.ROSE,
-		colorHEX: '#fb7185'
+		name: ColorTypes.ColorsNames.CYAN,
+		colorHEX: '#06b6d4'
 	},
 	{
-		name: ColorTypes.ColorsNames.PINK,
-		colorHEX: '#ec4899'
+		name: ColorTypes.ColorsNames.BLUE,
+		colorHEX: '#3b82f6'
 	},
 	{
-		name: ColorTypes.ColorsNames.PURPLE,
-		colorHEX: '#c084fc'
-	},
-	{
-		name: ColorTypes.ColorsNames.INDIGO,
-		colorHEX: '#818cf8'
-	},
-	{
-		name: ColorTypes.ColorsNames.SKY,
-		colorHEX: '#38bdf8'
+		name: ColorTypes.ColorsNames.FUCHSIA,
+		colorHEX: '#d946ef'
 	}
 ]

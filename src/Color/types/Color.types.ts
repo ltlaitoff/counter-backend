@@ -1,21 +1,14 @@
 import { ObjectId } from 'mongoose'
 
-/*
-	TODO: Find better method save colorNames
-*/
 export const enum ColorsNames {
+	GRAY = 'gray',
 	RED = 'red',
-	BLUE = 'blue',
-	SLATE = 'slate',
-	ORANGE = 'orange',
+	AMBER = 'amber',
 	LIME = 'lime',
-	GREEN = 'green',
 	EMERALD = 'emerald',
-	ROSE = 'rose',
-	PINK = 'pink',
-	PURPLE = 'purple',
-	INDIGO = 'indigo',
-	SKY = 'sky'
+	CYAN = 'cyan',
+	BLUE = 'blue',
+	FUCHSIA = 'fuchsia'
 }
 
 export interface Color {

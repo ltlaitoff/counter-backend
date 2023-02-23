@@ -17,7 +17,7 @@ export const intializeUserDefaultCategories = async (userId: ObjectId) => {
 		{
 			name: 'Push-ups',
 			comment: 'Push ups count',
-			color: colors[ColorTypes.ColorsNames.GREEN],
+			color: colors[ColorTypes.ColorsNames.EMERALD],
 			order: 2
 		},
 		{
