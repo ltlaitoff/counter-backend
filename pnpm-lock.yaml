@@ -11,6 +11,7 @@ specifiers:
   body-parser: ^1.20.1
   chalk: 4.1.2
   concurrently: ^7.6.0
+  connect-mongo: ^4.6.0
   cors: ^2.8.5
   dotenv: ^16.0.3
   eslint: ^8.32.0
@@ -20,6 +21,7 @@ specifiers:
   express: ^4.18.2
   express-session: ^1.17.3
   jose: ^4.11.2
+  mongodb: ^5.1.0
   mongoose: ^6.8.4
   nodemon: ^2.0.20
   prettier: ^2.8.3
@@ -29,11 +31,13 @@ specifiers:
 dependencies:
   body-parser: 1.20.1
   chalk: 4.1.2
+  connect-mongo: 4.6.0_bsn6jolx7p7p2daxgm5hd7arpe
   cors: 2.8.5
   dotenv: 16.0.3
   express: 4.18.2
   express-session: 1.17.3
   jose: 4.11.2
+  mongodb: 5.1.0
   mongoose: 6.8.4
 
 devDependencies:
@@ -1221,6 +1225,15 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
+  /asn1.js/5.4.1:
+    resolution: {integrity: sha512-+I//4cYPccV8LdmBLiX8CYvf9Sp3vQsrqu2QNXRcrbiWvcx/UdlFiqUJJzxRQxgsZmvhXhn4cSKeSmoFjVdupA==}
+    dependencies:
+      bn.js: 4.12.0
+      inherits: 2.0.4
+      minimalistic-assert: 1.0.1
+      safer-buffer: 2.1.2
+    dev: false
+
   /balanced-match/1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
     dev: true
@@ -1233,6 +1246,10 @@ packages:
     resolution: {integrity: sha512-jDctJ/IVQbZoJykoeHbhXpOlNBqGNcwXJKJog42E5HDPUwQTSdjCHdihjj0DlnheQ7blbT6dHOafNAiS8ooQKA==}
     engines: {node: '>=8'}
     dev: true
+
+  /bn.js/4.12.0:
+    resolution: {integrity: sha512-c98Bf3tPniI+scsdk237ku1Dc3ujXQTSgyiPUDEOe7tRkhrqridvh8klBv0HCEso1OLOYcHuCv/cS6DNxKH+ZA==}
+    dev: false
 
   /body-parser/1.20.1:
     resolution: {integrity: sha512-jWi7abTbYwajOytWCQc37VulmWiRae5RyTpaCyDcS5/lMdtwSz5lOpDE67srw/HYe35f1z3fDQw+3txg7gNtWw==}
@@ -1278,6 +1295,11 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       buffer: 5.7.1
+    dev: false
+
+  /bson/5.0.1:
+    resolution: {integrity: sha512-y09gBGusgHtinMon/GVbv1J6FrXhnr/+6hqLlSmEFzkz6PodqF6TxjyvfvY3AfO+oG1mgUtbC86xSbOlwvM62Q==}
+    engines: {node: '>=14.20.1'}
     dev: false
 
   /buffer/5.7.1:
@@ -1368,6 +1390,21 @@ packages:
       tree-kill: 1.2.2
       yargs: 17.6.2
     dev: true
+
+  /connect-mongo/4.6.0_bsn6jolx7p7p2daxgm5hd7arpe:
+    resolution: {integrity: sha512-8new4Z7NLP3CGP65Aw6ls3xDBeKVvHRSh39CXuDZTQsvpeeU9oNMzfFgvqmHqZ6gWpxIl663RyoVEmCAGf1yOg==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      express-session: ^1.17.1
+      mongodb: ^4.1.0
+    dependencies:
+      debug: 4.3.4
+      express-session: 1.17.3
+      kruptein: 3.0.6
+      mongodb: 5.1.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
 
   /content-disposition/0.5.4:
     resolution: {integrity: sha512-FveZTNuGw04cxlAiWbzi6zTAL/lhehaWbTtgluJh4/E95DqMwTmha3KZN1aAWA8cFIhHzMZUvLevkw5Rqk+tSQ==}
@@ -2052,6 +2089,13 @@ packages:
     engines: {node: '>=12.0.0'}
     dev: false
 
+  /kruptein/3.0.6:
+    resolution: {integrity: sha512-EQJjTwAJfQkC4NfdQdo3HXM2a9pmBm8oidzH270cYu1MbgXPNPMJuldN7OPX+qdhPO5rw4X3/iKz0BFBfkXGKA==}
+    engines: {node: '>8'}
+    dependencies:
+      asn1.js: 5.4.1
+    dev: false
+
   /levn/0.4.1:
     resolution: {integrity: sha512-+bT2uH4E5LGE7h/n3evcS/sQlJXCpIp6ym8OWJ5eV6+67Dsql/LaaT7qJBAt2rzfoa/5QBGBhxDix1dMt2kQKQ==}
     engines: {node: '>= 0.8.0'}
@@ -2132,6 +2176,10 @@ packages:
     hasBin: true
     dev: false
 
+  /minimalistic-assert/1.0.1:
+    resolution: {integrity: sha512-UtJcAD4yEaGtjPezWuO9wC4nwUnVH/8/Im3yEHQP4b67cXlD/Qr9hdITCU1xDbSEXg2XKNaP8jsReV7vQd00/A==}
+    dev: false
+
   /minimatch/3.1.2:
     resolution: {integrity: sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==}
     dependencies:
@@ -2157,6 +2205,28 @@ packages:
       saslprep: 1.0.3
     transitivePeerDependencies:
       - aws-crt
+    dev: false
+
+  /mongodb/5.1.0:
+    resolution: {integrity: sha512-qgKb7y+EI90y4weY3z5+lIgm8wmexbonz0GalHkSElQXVKtRuwqXuhXKccyvIjXCJVy9qPV82zsinY0W1FBnJw==}
+    engines: {node: '>=14.20.1'}
+    peerDependencies:
+      '@aws-sdk/credential-providers': ^3.201.0
+      mongodb-client-encryption: ^2.3.0
+      snappy: ^7.2.2
+    peerDependenciesMeta:
+      '@aws-sdk/credential-providers':
+        optional: true
+      mongodb-client-encryption:
+        optional: true
+      snappy:
+        optional: true
+    dependencies:
+      bson: 5.0.1
+      mongodb-connection-string-url: 2.6.0
+      socks: 2.7.1
+    optionalDependencies:
+      saslprep: 1.0.3
     dev: false
 
   /mongoose/6.8.4:
