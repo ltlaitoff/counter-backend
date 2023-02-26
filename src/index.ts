@@ -83,7 +83,11 @@ app.use(session(sessionConfig))
 
 app.use(
 	cors({
-		origin: ['http://localhost:4200', 'https://localhost:4200'],
+		origin: [
+			'http://localhost:4200',
+			'https://localhost:4200',
+			'https://ltlaitoff.github.io'
+		],
 		credentials: true
 	})
 )
