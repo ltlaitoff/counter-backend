@@ -40,6 +40,8 @@ const store = new session.MemoryStore()
 const app: Express = express()
 const port = process.env.PORT
 
+app.set('trust proxy', 1)
+
 app.use(
 	session({
 		secret: 'keyboard cat',
