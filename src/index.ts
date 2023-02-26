@@ -8,6 +8,7 @@ import bodyParser from 'body-parser'
 import router from './routes'
 import { ColorHelpers } from 'Color'
 import { serverDebugMessage } from 'utils/debugConsole.util'
+import MongoStore from 'connect-mongo'
 
 /*
 	TODO: Create middleware for print to console requests:
@@ -24,10 +25,10 @@ dotenv.config()
 
 mongoose.set('strictQuery', true)
 
+const MONGO_CONNECT_URL = `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@counterclaster.9imvrz0.mongodb.net/${process.env.MONGO_DATABASE}?retryWrites=true&w=majority`
+
 mongoose
-	.connect(
-		`mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@counterclaster.9imvrz0.mongodb.net/${process.env.MONGO_DATABASE}?retryWrites=true&w=majority`
-	)
+	.connect(MONGO_CONNECT_URL)
 	.then(() => {
 		serverDebugMessage('DB connected')
 	})
@@ -36,7 +37,6 @@ mongoose
 		serverDebugMessage('DB error connect', err)
 	})
 
-const store = new session.MemoryStore()
 const app: Express = express()
 const port = process.env.PORT
 
@@ -48,7 +48,9 @@ app.use(
 		name: 'sessionId',
 		resave: false,
 		saveUninitialized: true,
-		store
+		store: MongoStore.create({
+			mongoUrl: MONGO_CONNECT_URL
+		})
 	})
 )
 
