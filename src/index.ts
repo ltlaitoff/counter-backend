@@ -98,10 +98,16 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 
 app.use(router)
 
-const server = https.createServer(options, app)
-
-server.listen(port, () => {
+app.listen(port, () => {
 	serverDebugMessage(`Server is running at https://localhost:${port}`)
 
 	ColorHelpers.initializeDefaultColors()
 })
+
+// const server = https.createServer(options, app)
+
+// server.listen(port, () => {
+// 	serverDebugMessage(`Server is running at https://localhost:${port}`)
+
+// 	ColorHelpers.initializeDefaultColors()
+// })
