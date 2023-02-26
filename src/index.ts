@@ -9,7 +9,16 @@ import router from './routes'
 import { ColorHelpers } from 'Color'
 import { serverDebugMessage } from 'utils/debugConsole.util'
 import MongoStore from 'connect-mongo'
-import { debugMessage } from './utils/debugConsole.util'
+import fs from 'node:fs'
+
+import https from 'node:https'
+
+const key = fs.readFileSync(__dirname + '/../certs/selfsigned.key')
+const cert = fs.readFileSync(__dirname + '/../certs/selfsigned.crt')
+const options = {
+	key: key,
+	cert: cert
+}
 
 /*
 	TODO: Create middleware for print to console requests:
@@ -44,9 +53,10 @@ const store = MongoStore.create({
 	mongoUrl: MONGO_CONNECT_URL
 })
 
-app.set('trust proxy', 1)
+app.set('trust proxy', true)
 
 const sessionConfig: session.SessionOptions = {
+	proxy: true,
 	secret: 'keyboard cat',
 	name: 'sessionId',
 	resave: false,
@@ -60,14 +70,14 @@ const sessionConfig: session.SessionOptions = {
 	store
 }
 
-if (process.env.NODE_ENV === 'production') {
-	// if (sessionConfig.cookie) {
-	// 	sessionConfig.cookie.sameSite = 'none'
-	// }
-	// if (sessionConfig.cookie) {
-	// 	sessionConfig.cookie.secure = true
-	// }
-}
+// if (process.env.NODE_ENV === 'production') {
+// 	// if (sessionConfig.cookie) {
+// 	// 	sessionConfig.cookie.sameSite = 'none'
+// 	// }
+// 	// if (sessionConfig.cookie) {
+// 	// 	sessionConfig.cookie.secure = true
+// 	// }
+// }
 
 app.use(session(sessionConfig))
 
@@ -88,8 +98,10 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 
 app.use(router)
 
-app.listen(port, () => {
-	serverDebugMessage(`Server is running at http://localhost:${port}`)
+const server = https.createServer(options, app)
+
+server.listen(port, () => {
+	serverDebugMessage(`Server is running at https://localhost:${port}`)
 
 	ColorHelpers.initializeDefaultColors()
 })
