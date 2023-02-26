@@ -1,4 +1,4 @@
-import express, { Express } from 'express'
+import express, { Express, NextFunction, Request, Response } from 'express'
 import dotenv from 'dotenv'
 import mongoose, { ObjectId } from 'mongoose'
 
@@ -9,6 +9,7 @@ import router from './routes'
 import { ColorHelpers } from 'Color'
 import { serverDebugMessage } from 'utils/debugConsole.util'
 import MongoStore from 'connect-mongo'
+import { debugMessage } from './utils/debugConsole.util'
 
 /*
 	TODO: Create middleware for print to console requests:
@@ -39,6 +40,9 @@ mongoose
 
 const app: Express = express()
 const port = process.env.PORT
+const store = MongoStore.create({
+	mongoUrl: MONGO_CONNECT_URL
+})
 
 const sessionConfig: session.SessionOptions = {
 	secret: 'keyboard cat',
@@ -47,11 +51,10 @@ const sessionConfig: session.SessionOptions = {
 	saveUninitialized: true,
 	cookie: {
 		sameSite: false,
-		secure: false
+		secure: false,
+		httpOnly: true
 	},
-	store: MongoStore.create({
-		mongoUrl: MONGO_CONNECT_URL
-	})
+	store
 }
 
 if (process.env.NODE_ENV === 'production') {
@@ -61,9 +64,9 @@ if (process.env.NODE_ENV === 'production') {
 		sessionConfig.cookie.sameSite = 'none'
 	}
 
-	if (sessionConfig.cookie) {
-		sessionConfig.cookie.secure = true
-	}
+	// if (sessionConfig.cookie) {
+	// 	sessionConfig.cookie.secure = true
+	// }
 }
 
 app.use(session(sessionConfig))
@@ -76,6 +79,12 @@ app.use(
 )
 
 app.use(bodyParser.json())
+
+app.use((req: Request, res: Response, next: NextFunction) => {
+	serverDebugMessage(`Store: ${JSON.stringify(store, null, 2)}`)
+
+	next()
+})
 
 app.use(router)
 
