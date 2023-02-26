@@ -9,16 +9,16 @@ import router from './routes'
 import { ColorHelpers } from 'Color'
 import { serverDebugMessage } from 'utils/debugConsole.util'
 import MongoStore from 'connect-mongo'
-import fs from 'node:fs'
+// import fs from 'node:fs'
 
-import https from 'node:https'
+// import https from 'node:https'
 
-const key = fs.readFileSync(__dirname + '/../certs/selfsigned.key')
-const cert = fs.readFileSync(__dirname + '/../certs/selfsigned.crt')
-const options = {
-	key: key,
-	cert: cert
-}
+// const key = fs.readFileSync(__dirname + '/../certs/selfsigned.key')
+// const cert = fs.readFileSync(__dirname + '/../certs/selfsigned.crt')
+// const options = {
+// 	key: key,
+// 	cert: cert
+// }
 
 /*
 	TODO: Create middleware for print to console requests:
