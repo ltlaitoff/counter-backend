@@ -44,26 +44,26 @@ const store = MongoStore.create({
 	mongoUrl: MONGO_CONNECT_URL
 })
 
+app.set('trust proxy', 1)
+
 const sessionConfig: session.SessionOptions = {
 	secret: 'keyboard cat',
 	name: 'sessionId',
 	resave: false,
 	saveUninitialized: true,
 	cookie: {
-		sameSite: false,
-		secure: false,
-		httpOnly: true
+		maxAge: 24 * 60 * 60 * 100,
+		secure: true,
+		httpOnly: true,
+		sameSite: 'none'
 	},
 	store
 }
 
 if (process.env.NODE_ENV === 'production') {
-	app.set('trust proxy', 1)
-
-	if (sessionConfig.cookie) {
-		sessionConfig.cookie.sameSite = 'none'
-	}
-
+	// if (sessionConfig.cookie) {
+	// 	sessionConfig.cookie.sameSite = 'none'
+	// }
 	// if (sessionConfig.cookie) {
 	// 	sessionConfig.cookie.secure = true
 	// }
@@ -73,7 +73,7 @@ app.use(session(sessionConfig))
 
 app.use(
 	cors({
-		origin: 'http://localhost:4200',
+		origin: ['http://localhost:4200', 'https://localhost:4200'],
 		credentials: true
 	})
 )
