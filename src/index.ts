@@ -40,22 +40,33 @@ mongoose
 const app: Express = express()
 const port = process.env.PORT
 
-app.set('trust proxy', 1)
-
-app.use(
-	session({
-		secret: 'keyboard cat',
-		name: 'sessionId',
-		resave: false,
-		saveUninitialized: true,
-		cookie: {
-			sameSite: 'none'
-		},
-		store: MongoStore.create({
-			mongoUrl: MONGO_CONNECT_URL
-		})
+const sessionConfig: session.SessionOptions = {
+	secret: 'keyboard cat',
+	name: 'sessionId',
+	resave: false,
+	saveUninitialized: true,
+	cookie: {
+		sameSite: false,
+		secure: false
+	},
+	store: MongoStore.create({
+		mongoUrl: MONGO_CONNECT_URL
 	})
-)
+}
+
+if (process.env.NODE_ENV === 'production') {
+	app.set('trust proxy', 1)
+
+	if (sessionConfig.cookie) {
+		sessionConfig.cookie.sameSite = 'none'
+	}
+
+	if (sessionConfig.cookie) {
+		sessionConfig.cookie.secure = true
+	}
+}
+
+app.use(session(sessionConfig))
 
 app.use(
 	cors({
