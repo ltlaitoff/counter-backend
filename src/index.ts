@@ -48,6 +48,9 @@ app.use(
 		name: 'sessionId',
 		resave: false,
 		saveUninitialized: true,
+		cookie: {
+			sameSite: 'none'
+		},
 		store: MongoStore.create({
 			mongoUrl: MONGO_CONNECT_URL
 		})
