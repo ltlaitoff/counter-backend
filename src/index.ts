@@ -9,16 +9,8 @@ import router from './routes'
 import { ColorHelpers } from 'Color'
 import { serverDebugMessage } from 'utils/debugConsole.util'
 import MongoStore from 'connect-mongo'
-// import fs from 'node:fs'
-
-// import https from 'node:https'
-
-// const key = fs.readFileSync(__dirname + '/../certs/selfsigned.key')
-// const cert = fs.readFileSync(__dirname + '/../certs/selfsigned.crt')
-// const options = {
-// 	key: key,
-// 	cert: cert
-// }
+import fs from 'node:fs'
+import https from 'node:https'
 
 /*
 	TODO: Create middleware for print to console requests:
@@ -70,15 +62,6 @@ const sessionConfig: session.SessionOptions = {
 	store
 }
 
-// if (process.env.NODE_ENV === 'production') {
-// 	// if (sessionConfig.cookie) {
-// 	// 	sessionConfig.cookie.sameSite = 'none'
-// 	// }
-// 	// if (sessionConfig.cookie) {
-// 	// 	sessionConfig.cookie.secure = true
-// 	// }
-// }
-
 app.use(session(sessionConfig))
 
 app.use(
@@ -102,16 +85,25 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 
 app.use(router)
 
-app.listen(port, () => {
+const runCallback = () => {
 	serverDebugMessage(`Server is running at https://localhost:${port}`)
 
 	ColorHelpers.initializeDefaultColors()
-})
+}
 
-// const server = https.createServer(options, app)
+const run = (app: Express, port: number, callback: () => void) => {
+	if (process.env.NODE_ENV === 'production') {
+		app.listen(port, callback)
+		return
+	}
+	const key = fs.readFileSync(__dirname + '/../certs/selfsigned.key')
+	const cert = fs.readFileSync(__dirname + '/../certs/selfsigned.crt')
+	const options = {
+		key: key,
+		cert: cert
+	}
+	const server = https.createServer(options, app)
+	server.listen(port, callback)
+}
 
-// server.listen(port, () => {
-// 	serverDebugMessage(`Server is running at https://localhost:${port}`)
-
-// 	ColorHelpers.initializeDefaultColors()
-// })
+run(app, port, runCallback)
