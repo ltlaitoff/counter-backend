@@ -62,15 +62,6 @@ const sessionConfig: session.SessionOptions = {
 	store
 }
 
-// if (process.env.NODE_ENV === 'production') {
-// 	// if (sessionConfig.cookie) {
-// 	// 	sessionConfig.cookie.sameSite = 'none'
-// 	// }
-// 	// if (sessionConfig.cookie) {
-// 	// 	sessionConfig.cookie.secure = true
-// 	// }
-// }
-
 app.use(session(sessionConfig))
 
 app.use(
