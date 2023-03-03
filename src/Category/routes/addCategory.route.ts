@@ -53,7 +53,9 @@ export const addCategoryRoute = async (req: Request, res: Response) => {
 		order: lastOrderId === null ? 0 : lastOrderId + 1
 	}
 
-	CategoryModel.create(dataForAdd, (error, document) => {
+	CategoryModel.create(dataForAdd, async (error, document) => {
+		await document.populate('color')
+
 		res.status(200).json(document)
 	})
 }
