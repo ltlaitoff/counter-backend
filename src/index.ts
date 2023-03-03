@@ -11,6 +11,7 @@ import { serverDebugMessage } from 'utils/debugConsole.util'
 import MongoStore from 'connect-mongo'
 import fs from 'node:fs'
 import https from 'node:https'
+import { COOKIE_MAX_AGE } from './config'
 
 /*
 	TODO: Create middleware for print to console requests:
@@ -54,7 +55,7 @@ const sessionConfig: session.SessionOptions = {
 	resave: false,
 	saveUninitialized: true,
 	cookie: {
-		maxAge: 24 * 60 * 60 * 100,
+		maxAge: COOKIE_MAX_AGE,
 		secure: true,
 		httpOnly: true,
 		sameSite: 'none'
