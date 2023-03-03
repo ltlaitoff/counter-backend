@@ -53,7 +53,7 @@ const sessionConfig: session.SessionOptions = {
 	secret: 'keyboard cat',
 	name: 'sessionId',
 	resave: false,
-	saveUninitialized: true,
+	saveUninitialized: false,
 	cookie: {
 		maxAge: COOKIE_MAX_AGE,
 		secure: true,
