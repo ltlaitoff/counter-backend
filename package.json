@@ -4,7 +4,9 @@
 	"description": "",
 	"scripts": {
 		"build": "tsc && tsc-alias",
-		"start": "NODE_ENV='development' node dist/index.js",
+		"start-prod": "NODE_ENV='production' node dist/index.js",
+		"start-dev": "NODE_ENV='development' node dist/index.js",
+		"start": "npm run build && npm run start",
 		"dev": "NODE_ENV='development' tsc && tsc-alias && (concurrently \"tsc -w\" \"tsc-alias -w\" \"nodemon -q dist/index.js\")",
 		"lint": "eslint . --ext .ts",
 		"format": "prettier --write ."
