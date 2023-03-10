@@ -13,7 +13,7 @@ export const getAllCategoriesRoute = (req: Request, res: Response) => {
 	}
 
 	return CategoryModel.find({ user: userId }, '-__v -createdAt -updatedAt')
-		.populate('color', '-_id -__v -createdAt -updatedAt')
+		.populate('color', '-__v -createdAt -updatedAt')
 		.exec((error, value) => {
 			if (error) {
 				return somethingWentWrongError(res)
