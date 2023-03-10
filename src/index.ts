@@ -54,6 +54,9 @@ mongoose
 		serverDebugMessage('DB error connect', err)
 	})
 
+/* Mongoose custom rules */
+mongoose.Schema.Types.String.checkRequired(v => v != null)
+
 const app: Express = express()
 const port = process.env.PORT
 const store = MongoStore.create({
