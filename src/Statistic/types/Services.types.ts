@@ -10,3 +10,9 @@ export type FindRecord = Partial<
 		category: string
 	}
 >
+
+export type DeleteRecord = Required<
+	Pick<Statistic, 'user'> & {
+		_id: string
+	}
+>
