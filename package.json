@@ -27,7 +27,8 @@
 		"express-session": "^1.17.3",
 		"jose": "^4.11.2",
 		"mongodb": "^5.1.0",
-		"mongoose": "^6.8.4"
+		"mongoose": "^6.8.4",
+		"rimraf": "^4.4.0"
 	},
 	"devDependencies": {
 		"@types/body-parser": "^1.19.2",
