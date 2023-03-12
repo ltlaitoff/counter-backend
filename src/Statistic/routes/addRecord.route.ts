@@ -66,5 +66,9 @@ export const addRecordRoute = async (req: Request, res: Response) => {
 		...validBodyData
 	} as StatisticTypes.CreateRecord)
 
-	console.log('createdRecord: ', createdRecord)
+	const findedRecord = await StatisticServices.findRecord({
+		_id: String(createdRecord._id)
+	})
+
+	return res.status(200).json(findedRecord)
 }

@@ -24,21 +24,38 @@ declare module 'express-session' {
 	}
 }
 
-dotenv.config()
+if (process.env.NODE_ENV === 'production') {
+	serverDebugMessage('PRODUCTION')
+	dotenv.config()
+} else {
+	serverDebugMessage('DEVELOPMENT')
+	dotenv.config({ path: `${process.cwd()}/.env.development` })
+}
 
 mongoose.set('strictQuery', true)
 
-const MONGO_CONNECT_URL = `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@counterclaster.9imvrz0.mongodb.net/${process.env.MONGO_DATABASE}?retryWrites=true&w=majority`
+const getMongoConnectUrl = () => {
+	if (process.env.NODE_ENV === 'production') {
+		return `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@counterclaster.9imvrz0.mongodb.net/${process.env.MONGO_DATABASE}?retryWrites=true&w=majority`
+	}
+
+	return `mongodb://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@127.0.0.1:27017/${process.env.MONGO_DATABASE}`
+}
+
+const MONGO_CONNECT_URL = getMongoConnectUrl()
 
 mongoose
 	.connect(MONGO_CONNECT_URL)
 	.then(() => {
-		serverDebugMessage('DB connected')
+		serverDebugMessage('DB connecMONGO_CONNECT_URLted')
 	})
 
 	.catch(err => {
 		serverDebugMessage('DB error connect', err)
 	})
+
+/* Mongoose custom rules */
+mongoose.Schema.Types.String.checkRequired(v => v != null)
 
 const app: Express = express()
 const port = process.env.PORT

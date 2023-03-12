@@ -2,9 +2,14 @@
 	"name": "counter-backend",
 	"version": "1.0.0",
 	"description": "",
+	"engines": {
+		"node": "18.x"
+	},
 	"scripts": {
-		"build": "tsc && tsc-alias",
-		"start": "NODE_ENV='development' node dist/index.js",
+		"build": "rimraf dist && tsc && tsc-alias",
+		"start-prod": "NODE_ENV='production' node dist/index.js",
+		"start-dev": "NODE_ENV='development' node dist/index.js",
+		"start": "npm run build && npm run start-dev",
 		"dev": "NODE_ENV='development' tsc && tsc-alias && (concurrently \"tsc -w\" \"tsc-alias -w\" \"nodemon -q dist/index.js\")",
 		"lint": "eslint . --ext .ts",
 		"format": "prettier --write ."
@@ -22,7 +27,8 @@
 		"express-session": "^1.17.3",
 		"jose": "^4.11.2",
 		"mongodb": "^5.1.0",
-		"mongoose": "^6.8.4"
+		"mongoose": "^6.8.4",
+		"rimraf": "^4.4.0"
 	},
 	"devDependencies": {
 		"@types/body-parser": "^1.19.2",
@@ -39,6 +45,7 @@
 		"eslint-plugin-prettier": "^4.2.1",
 		"nodemon": "^2.0.20",
 		"prettier": "^2.8.3",
+		"ts-node": "^10.9.1",
 		"tsc-alias": "^1.8.2",
 		"typescript": "^4.9.4"
 	}
