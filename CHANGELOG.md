@@ -1,14 +1,17 @@
 # CHANGELOG
 
-## v0.0.2 - In dev
+## TODO
+
+- Create statistic edit data route [#34](https://github.com/ltlaitoff/counter-backend/issues/34)
+- Create categories reorder route [#31](https://github.com/ltlaitoff/counter-backend/issues/31)
+- Create categories edit data route [#32](https://github.com/ltlaitoff/counter-backend/issues/32)
+
+## v0.0.2 - 12.03
 
 Millestone [v0.0.2](https://github.com/ltlaitoff/counter-backend/milestone/2)
 
 - Create developing(local) database [#30](https://github.com/ltlaitoff/counter-backend/issues/30)
-- Create categories reorder route [#31](https://github.com/ltlaitoff/counter-backend/issues/31)
-- Create categories edit data route [#32](https://github.com/ltlaitoff/counter-backend/issues/32)
 - Create routes for sync data with frontend [#33](https://github.com/ltlaitoff/counter-backend/issues/33)
-- Create statistic edit data route [#34](https://github.com/ltlaitoff/counter-backend/issues/34)
 - Create statistic delete item route [#35](https://github.com/ltlaitoff/counter-backend/issues/35)
 - Fix on add statistic record only the first one is added [#36](https://github.com/ltlaitoff/counter-backend/issues/36)
 - Fix allow empty comments for add categories and statistic [#37](https://github.com/ltlaitoff/counter-backend/issues/37)
