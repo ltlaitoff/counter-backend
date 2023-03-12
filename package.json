@@ -2,6 +2,9 @@
 	"name": "counter-backend",
 	"version": "1.0.0",
 	"description": "",
+	"engines": {
+		"node": "18.x"
+	},
 	"scripts": {
 		"build": "tsc && tsc-alias",
 		"start-prod": "NODE_ENV='production' node dist/index.js",
