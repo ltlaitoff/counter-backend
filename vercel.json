@@ -1,7 +1,5 @@
 {
 	"version": 2,
-	"buildCommand": "pnpm run build",
-	"outputDirectory": "dist",
 	"env": {
 		"NODE_ENV": "production"
 	},
