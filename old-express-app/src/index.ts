@@ -69,23 +69,6 @@ const store = MongoStore.create({
 
 app.set('trust proxy', true)
 
-const sessionConfig: session.SessionOptions = {
-	proxy: true,
-	secret: 'keyboard cat',
-	name: 'sessionId',
-	resave: false,
-	saveUninitialized: false,
-	cookie: {
-		maxAge: COOKIE_MAX_AGE,
-		secure: true,
-		httpOnly: true,
-		sameSite: 'none'
-	}
-	// store
-}
-
-app.use(session(sessionConfig))
-
 app.use(
 	cors({
 		origin: [
@@ -98,6 +81,23 @@ app.use(
 )
 
 app.use(bodyParser.json())
+
+const sessionConfig: session.SessionOptions = {
+	proxy: true,
+	secret: 'keyboard cat',
+	name: 'sessionId',
+	resave: false,
+	saveUninitialized: false,
+	cookie: {
+		maxAge: COOKIE_MAX_AGE,
+		secure: true,
+		httpOnly: true,
+		sameSite: 'none'
+	},
+	store
+}
+
+app.use(session(sessionConfig))
 
 app.use((req: Request, res: Response, next: NextFunction) => {
 	serverDebugMessage(`Store: ${JSON.stringify(store, null, 2)}`)
