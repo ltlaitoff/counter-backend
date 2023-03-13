@@ -26,6 +26,8 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+Documentation: [Docs](https://github.com/ltlaitoff/conspects/blob/main/projects/Counter.md)
+
 ## Installation
 
 ```bash
