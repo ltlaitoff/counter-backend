@@ -69,16 +69,17 @@ const store = MongoStore.create({
 
 app.set('trust proxy', true)
 
-// app.use(
-// 	cors({
-// 		origin: [
-// 			'http://localhost:4200',
-// 			'https://localhost:4200',
-// 			'https://ltlaitoff.github.io'
-// 		],
-// 		credentials: true
-// 	})
-// )
+app.use(
+	cors({
+		origin: [
+			'http://localhost:4200',
+			'https://localhost:4200',
+			'https://ltlaitoff.github.io'
+		],
+		methods: ['GET', 'POST', 'PUT', 'DELETE'],
+		credentials: true
+	})
+)
 
 app.use(bodyParser.json())
 
