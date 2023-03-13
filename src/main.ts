@@ -7,7 +7,8 @@ import expressApp from '../old-express-app/src'
 async function bootstrap() {
 	const app = await NestFactory.create(
 		AppModule,
-		new ExpressAdapter(expressApp)
+		new ExpressAdapter(expressApp),
+		{ cors: true }
 	)
 
 	await app.listen(3000)
