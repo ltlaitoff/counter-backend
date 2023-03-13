@@ -16,7 +16,7 @@ async function bootstrap() {
 			'https://localhost:4200',
 			'https://ltlaitoff.github.io'
 		],
-		methods: ['GET', 'POST', 'PUT', 'DELETE'],
+		methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
 		credentials: true
 	})
 
