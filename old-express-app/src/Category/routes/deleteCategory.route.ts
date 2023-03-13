@@ -2,8 +2,8 @@ import { Request, Response } from 'express'
 
 import { CategoryModel } from '..'
 
-import { getSessionUserId } from 'helpers'
-import { unauthorizedError } from 'helpers'
+import { getSessionUserId } from '../../helpers'
+import { unauthorizedError } from '../../helpers'
 
 export const deleteCategoryRoute = async (
 	req: Request<{ id: string }>,
@@ -24,7 +24,7 @@ export const deleteCategoryRoute = async (
 			_id: idForDelete,
 			user: userId
 		},
-		error => {
+		(error: unknown) => {
 			console.log('deleteCategoryRoute:', error)
 			res.status(200).json(error)
 		}

@@ -1,7 +1,7 @@
 import chalk, { Chalk } from 'chalk'
 import { debugMessage } from '../../utils/debugConsole.util'
 
-const COLOR_TAG = chalk.magenta('[Color] ')
+const COLOR_TAG = '[Color] '
 
 type ServiceDebugMessageTypes = 'create' | 'update' | 'remove' | 'find'
 

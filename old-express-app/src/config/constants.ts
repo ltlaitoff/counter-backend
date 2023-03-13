@@ -1,4 +1,4 @@
-import { ColorTypes } from 'Color'
+import { ColorTypes } from '../Color'
 
 export const DEFAULT_COLORS = [
 	{

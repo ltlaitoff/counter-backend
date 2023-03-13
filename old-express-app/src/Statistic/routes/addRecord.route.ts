@@ -6,8 +6,8 @@ import {
 	numberValidation,
 	dateValidation,
 	stringValidation
-} from 'helpers'
-import { unauthorizedError } from 'helpers'
+} from '../../helpers'
+import { unauthorizedError } from '../../helpers'
 
 type RecordBody = Omit<
 	Omit<Omit<StatisticTypes.Statistic, 'user'>, '_id'>,

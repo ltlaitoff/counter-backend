@@ -1,4 +1,4 @@
-import chalk from 'chalk'
+// import chalk from 'chalk'
 
 export const debugMessage = (
 	message: string,
@@ -12,7 +12,7 @@ export const serverDebugMessage = (
 	message: string,
 	...args: Array<unknown>
 ) => {
-	const tag = chalk.yellowBright(`[Server]`)
+	const tag = `[Server]`
 
 	debugMessage(message, tag, ...args)
 }

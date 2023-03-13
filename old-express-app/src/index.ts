@@ -6,12 +6,15 @@ import cors from 'cors'
 import session from 'express-session'
 import bodyParser from 'body-parser'
 import router from './routes'
-import { ColorHelpers } from 'Color'
-import { serverDebugMessage } from 'utils/debugConsole.util'
-import MongoStore from 'connect-mongo'
-import fs from 'node:fs'
-import https from 'node:https'
+// import { ColorHelpers } from './Color'
+import { serverDebugMessage } from './utils/debugConsole.util'
+// import * as MongoStore from 'connect-mongo'
+// import fs from 'node:fs'
+// import https from 'node:https'
 import { COOKIE_MAX_AGE } from './config'
+
+/* eslint-disable-next-line */
+const MongoStore = require('connect-mongo')
 
 /*
 	TODO: Create middleware for print to console requests:
@@ -26,10 +29,11 @@ declare module 'express-session' {
 
 if (process.env.NODE_ENV === 'production') {
 	serverDebugMessage('PRODUCTION')
-	dotenv.config()
+	// dotenv.config()
 } else {
 	serverDebugMessage('DEVELOPMENT')
-	dotenv.config({ path: `${process.cwd()}/.env.development` })
+	// console.log(dotenv)
+	// dotenv.config({ path: `${process.cwd()}/.env.development` })
 }
 
 mongoose.set('strictQuery', true)
@@ -57,7 +61,7 @@ mongoose
 /* Mongoose custom rules */
 mongoose.Schema.Types.String.checkRequired(v => v != null)
 
-const app: Express = express()
+const app = express()
 const port = process.env.PORT
 const store = MongoStore.create({
 	mongoUrl: MONGO_CONNECT_URL
@@ -76,8 +80,8 @@ const sessionConfig: session.SessionOptions = {
 		secure: true,
 		httpOnly: true,
 		sameSite: 'none'
-	},
-	store
+	}
+	// store
 }
 
 app.use(session(sessionConfig))
@@ -103,25 +107,27 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 
 app.use(router)
 
-const runCallback = () => {
-	serverDebugMessage(`Server is running at https://localhost:${port}`)
+// const runCallback = () => {
+// 	serverDebugMessage(`Server is running at https://localhost:${port}`)
 
-	ColorHelpers.initializeDefaultColors()
-}
+// 	ColorHelpers.initializeDefaultColors()
+// }
 
-const run = (app: Express, port: number, callback: () => void) => {
-	if (process.env.NODE_ENV === 'production') {
-		app.listen(port, callback)
-		return
-	}
-	const key = fs.readFileSync(__dirname + '/../certs/selfsigned.key')
-	const cert = fs.readFileSync(__dirname + '/../certs/selfsigned.crt')
-	const options = {
-		key: key,
-		cert: cert
-	}
-	const server = https.createServer(options, app)
-	server.listen(port, callback)
-}
+// const run = (app: Express, port: number, callback: () => void) => {
+// 	if (process.env.NODE_ENV === 'production') {
+// 		app.listen(port, callback)
+// 		return
+// 	}
+// 	const key = fs.readFileSync(__dirname + '/../certs/selfsigned.key')
+// 	const cert = fs.readFileSync(__dirname + '/../certs/selfsigned.crt')
+// 	const options = {
+// 		key: key,
+// 		cert: cert
+// 	}
+// 	const server = https.createServer(options, app)
+// 	server.listen(port, callback)
+// }
 
-run(app, port, runCallback)
+// run(app, port, runCallback)
+
+export default app

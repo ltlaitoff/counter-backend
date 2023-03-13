@@ -1,9 +1,9 @@
 import { Response, Request } from 'express'
 import * as jose from 'jose'
 
-import { UserHelpers } from 'User'
-import { authorizationError, somethingWentWrongError } from 'helpers'
-import { HttpStatusCode } from 'types'
+import { UserHelpers } from '../../User'
+import { authorizationError, somethingWentWrongError } from '../../helpers'
+import { HttpStatusCode } from '../../types'
 
 import { AuthorizationHelpers } from '..'
 

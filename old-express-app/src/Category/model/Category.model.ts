@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose'
 import { CategoryTypes } from '..'
-import { UserModel } from 'User/model'
-import { ColorModel } from 'Color'
+import { UserModel } from '../../User/model'
+import { ColorModel } from '../../Color'
 
 const categorySchema = new Schema<CategoryTypes.Category>(
 	{

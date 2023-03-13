@@ -1,6 +1,6 @@
 import { ObjectId } from 'mongoose'
 
-import { DEFAULT_COLORS } from 'config'
+import { DEFAULT_COLORS } from '../../config'
 import { ColorTypes, ColorServices, ColorHelpers } from '..'
 
 export const initializeDefaultColors = async () => {

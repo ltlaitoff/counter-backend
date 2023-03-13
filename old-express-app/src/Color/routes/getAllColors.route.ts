@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 
-import { somethingWentWrongError } from 'helpers'
-import { HttpStatusCode } from 'types'
+import { somethingWentWrongError } from '../../helpers'
+import { HttpStatusCode } from '../../types'
 import { ColorServices } from '..'
 
 export const getAllColorsRoute = async (req: Request, res: Response) => {

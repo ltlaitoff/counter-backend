@@ -1,4 +1,4 @@
-import Router from 'express'
+import { Router } from 'express'
 import * as ColorRoutes from './routes'
 
 const colorRouter = Router()

@@ -1,6 +1,6 @@
-import Router from 'express'
+import { Router } from 'express'
 import * as AuthorizationRoutes from './routes'
-import { authorizationHeaderMiddleware } from 'middlewares/authorizationHeader.middleware'
+import { authorizationHeaderMiddleware } from '../middlewares/authorizationHeader.middleware'
 
 const authorizationRouter = Router()
 

@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose'
-import { CategoryModel } from 'Category'
-import { UserModel } from 'User'
+import { CategoryModel } from '../../Category'
+import { UserModel } from '../../User'
 
 import { StatisticTypes } from '..'
 

@@ -1,7 +1,7 @@
 import * as jose from 'jose'
 
-import { UserTypes } from 'User'
-import { AuthorizationHelpers } from 'Authorization'
+import { UserTypes } from '../../User'
+import { AuthorizationHelpers } from '..'
 
 export const getUserDataFromJWTPayload = (
 	payload: jose.JWTPayload

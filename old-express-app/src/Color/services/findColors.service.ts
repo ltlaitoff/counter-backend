@@ -1,5 +1,5 @@
 import { ColorModel, ColorTypes } from '..'
-import { ColorUtils } from 'Color'
+import { ColorUtils } from '..'
 
 export const findColors = async (
 	data?: ColorTypes.Color,

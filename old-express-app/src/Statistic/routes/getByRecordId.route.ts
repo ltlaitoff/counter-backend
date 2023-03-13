@@ -1,9 +1,9 @@
 import { Request, Response } from 'express'
 
-import { getSessionUserId } from 'helpers'
+import { getSessionUserId } from '../../helpers'
 import { StatisticServices } from '..'
-import { unauthorizedError } from 'helpers'
-import { HttpStatusCode } from 'types'
+import { unauthorizedError } from '../../helpers'
+import { HttpStatusCode } from '../../types'
 
 export const getByRecordIdRoute = async (
 	req: Request<{ recordId: string }>,

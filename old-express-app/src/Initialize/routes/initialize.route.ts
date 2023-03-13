@@ -1,6 +1,6 @@
 import { Response, Request } from 'express'
-import { HttpStatusCode } from 'types'
-import { UserHelpers } from 'User'
+import { HttpStatusCode } from '../../types'
+import { UserHelpers } from '../../User'
 
 export const initializeRoute = async (req: Request, res: Response) => {
 	if (!req.session.authorized || !req.session.userId) {

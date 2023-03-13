@@ -1,5 +1,5 @@
 import { UserTypes, UserModel } from '..'
-import { CategoryHelpers } from 'Category'
+import { CategoryHelpers } from '../../Category'
 
 interface CreateUserOptions {
 	intializeDefaultCategories: boolean

@@ -1,4 +1,4 @@
-import Router from 'express'
+import { Router } from 'express'
 import * as StatisticRoutes from './routes'
 
 const statisticRouter = Router()

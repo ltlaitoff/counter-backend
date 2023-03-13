@@ -1,7 +1,7 @@
 import { ColorModel, ColorTypes } from '..'
-import { ColorUtils } from 'Color'
+import { ColorUtils } from '..'
 
-export const removeColor = async (data: ColorTypes.Color) => {
+export const removeColor: any = async (data: ColorTypes.Color) => {
 	ColorUtils.serviceDebugMessage('remove', JSON.stringify(data))
 
 	return await ColorModel.deleteOne(data)

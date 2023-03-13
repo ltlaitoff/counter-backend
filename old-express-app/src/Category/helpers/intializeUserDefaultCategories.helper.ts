@@ -1,5 +1,5 @@
 import { ObjectId } from 'mongoose'
-import { ColorHelpers, ColorTypes } from 'Color'
+import { ColorHelpers, ColorTypes } from '../../Color'
 
 import { CategoryHelpers } from '..'
 

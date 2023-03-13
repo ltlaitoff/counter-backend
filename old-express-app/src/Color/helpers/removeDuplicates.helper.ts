@@ -1,6 +1,6 @@
 import { ObjectId } from 'mongoose'
 
-import { ColorTypes } from 'Color'
+import { ColorTypes } from '../../Color'
 import { ColorServices } from '..'
 
 type ColorWithId = ColorTypes.Color & { _id: ObjectId }

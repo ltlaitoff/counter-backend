@@ -1,6 +1,10 @@
 import { Request, Response } from 'express'
 
-import { getSessionUserId, stringValidation, unauthorizedError } from 'helpers'
+import {
+	getSessionUserId,
+	stringValidation,
+	unauthorizedError
+} from '../../helpers'
 
 import { CategoryModel, CategoryHelpers, CategoryTypes } from '..'
 
@@ -53,6 +57,7 @@ export const addCategoryRoute = async (req: Request, res: Response) => {
 		order: lastOrderId === null ? 0 : lastOrderId + 1
 	}
 
+	/* @ts-expect-error OLD */
 	CategoryModel.create(dataForAdd, async (error, document) => {
 		await document.populate('color')
 

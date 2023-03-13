@@ -1,6 +1,6 @@
 import { ObjectId } from 'mongoose'
 
-import { ColorTypes } from 'Color'
+import { ColorTypes } from '..'
 import { ColorServices } from '..'
 
 export const createOrUpdateColors = (
