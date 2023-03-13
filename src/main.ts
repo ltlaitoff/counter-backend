@@ -7,18 +7,18 @@ import expressApp from '../old-express-app/src'
 async function bootstrap() {
 	const app = await NestFactory.create(
 		AppModule,
-		new ExpressAdapter(expressApp),
-		{
-			cors: {
-				origin: [
-					'http://localhost:4200',
-					'https://localhost:4200',
-					'https://ltlaitoff.github.io'
-				],
-				credentials: true
-			}
-		}
+		new ExpressAdapter(expressApp)
 	)
+
+	app.enableCors({
+		origin: [
+			'http://localhost:4200',
+			'https://localhost:4200',
+			'https://ltlaitoff.github.io'
+		],
+		methods: ['GET', 'POST', 'PUT', 'DELETE'],
+		credentials: true
+	})
 
 	await app.listen(3000)
 }
