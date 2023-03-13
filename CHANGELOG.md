@@ -6,6 +6,12 @@
 - Create categories reorder route [#31](https://github.com/ltlaitoff/counter-backend/issues/31)
 - Create categories edit data route [#32](https://github.com/ltlaitoff/counter-backend/issues/32)
 
+## v1.0.0
+
+Millestone [v1.0.0](https://github.com/ltlaitoff/counter-backend/milestone/3)
+
+- Migrate to nest.js [#42](https://github.com/ltlaitoff/counter-backend/issues/42)
+
 ## v0.0.2 - 12.03
 
 Millestone [v0.0.2](https://github.com/ltlaitoff/counter-backend/milestone/2)
