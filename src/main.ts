@@ -20,7 +20,11 @@ async function bootstrap() {
 		credentials: true
 	})
 
-	await app.listen(3000)
+	await app.listen(process.env.PORT)
+
+	if (!process.env.NODE_ENV) {
+		console.log(`App runned: https://localhost:${process.env.PORT}`)
+	}
 }
 
 bootstrap()

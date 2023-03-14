@@ -38,20 +38,20 @@ if (process.env.NODE_ENV === 'production') {
 
 mongoose.set('strictQuery', true)
 
-const getMongoConnectUrl = () => {
-	if (process.env.NODE_ENV === 'production') {
-		return `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@counterclaster.9imvrz0.mongodb.net/${process.env.MONGO_DATABASE}?retryWrites=true&w=majority`
-	}
+// const getMongoConnectUrl = () => {
+// 	if (process.env.NODE_ENV === 'production') {
+// 		return `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@counterclaster.9imvrz0.mongodb.net/${process.env.MONGO_DATABASE}?retryWrites=true&w=majority`
+// 	}
 
-	return `mongodb://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@127.0.0.1:27017/${process.env.MONGO_DATABASE}`
-}
+// 	return `mongodb://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@127.0.0.1:27017/${process.env.MONGO_DATABASE}`
+// }
 
-const MONGO_CONNECT_URL = getMongoConnectUrl()
+const MONGO_CONNECT_URL = process.env.MONGODB_URI
 
 mongoose
 	.connect(MONGO_CONNECT_URL)
 	.then(() => {
-		serverDebugMessage('DB connecMONGO_CONNECT_URLted')
+		serverDebugMessage('DB connected')
 	})
 
 	.catch(err => {
@@ -62,7 +62,6 @@ mongoose
 mongoose.Schema.Types.String.checkRequired(v => v != null)
 
 const app = express()
-const port = process.env.PORT
 const store = MongoStore.create({
 	mongoUrl: MONGO_CONNECT_URL
 })

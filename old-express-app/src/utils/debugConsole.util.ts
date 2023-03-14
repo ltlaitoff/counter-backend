@@ -12,7 +12,7 @@ export const serverDebugMessage = (
 	message: string,
 	...args: Array<unknown>
 ) => {
-	const tag = `[Server]`
+	const tag = `[Express]`
 
 	debugMessage(message, tag, ...args)
 }
