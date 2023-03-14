@@ -3,11 +3,13 @@ import { AppModule } from './app.module'
 import { ExpressAdapter } from '@nestjs/platform-express'
 
 import expressApp from '../old-express-app/src'
+import { getHttpsOptions } from './helpers/getHttpsOptions.helper'
 
 async function bootstrap() {
 	const app = await NestFactory.create(
 		AppModule,
-		new ExpressAdapter(expressApp)
+		new ExpressAdapter(expressApp),
+		{ httpsOptions: process.env.NODE_ENV ? undefined : getHttpsOptions() }
 	)
 
 	app.enableCors({

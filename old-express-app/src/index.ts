@@ -100,7 +100,7 @@ const sessionConfig: session.SessionOptions = {
 app.use(session(sessionConfig))
 
 app.use((req: Request, res: Response, next: NextFunction) => {
-	serverDebugMessage(`Store: ${JSON.stringify(store, null, 2)}`)
+	serverDebugMessage(`Request path: ${req.path}`)
 
 	next()
 })
