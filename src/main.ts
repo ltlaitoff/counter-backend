@@ -5,6 +5,9 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger'
 
 import expressApp from '../old-express-app/src'
 import { getHttpsOptions } from './helpers/getHttpsOptions.helper'
+import { COOKIE_MAX_AGE } from './config/constants.config'
+import session from 'express-session'
+import MongoStore from 'connect-mongo'
 
 async function bootstrap() {
 	const app = await NestFactory.create(
@@ -31,6 +34,31 @@ async function bootstrap() {
 
 	const document = SwaggerModule.createDocument(app, config)
 	SwaggerModule.setup('api', app, document)
+
+	const store = MongoStore.create({
+		mongoUrl: process.env.MONGODB_URI
+	})
+
+	const sessionConfig: session.SessionOptions = {
+		proxy: true,
+		secret: 'keyboard cat',
+		name: 'sessionId',
+		resave: false,
+		saveUninitialized: false,
+		cookie: {
+			maxAge: COOKIE_MAX_AGE,
+			secure:
+				process.env.NODE_ENV === undefined ||
+				process.env.NODE_ENV === 'production',
+			httpOnly:
+				process.env.NODE_ENV === undefined ||
+				process.env.NODE_ENV === 'production',
+			sameSite: 'none'
+		},
+		store
+	}
+
+	app.use(session(sessionConfig))
 
 	await app.listen(process.env.PORT)
 
