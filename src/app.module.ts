@@ -5,6 +5,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config'
 import { ColorModule } from './color/color.module'
 import { MongooseModule } from '@nestjs/mongoose'
 import { environmentConfig } from './config/environment.config'
+import { UserModule } from './user/user.module';
 
 @Module({
 	imports: [
@@ -22,7 +23,8 @@ import { environmentConfig } from './config/environment.config'
 				uri: config.get<string>('database.uri')
 			})
 		}),
-		ColorModule
+		ColorModule,
+		UserModule
 	],
 	controllers: [AppController],
 	providers: [AppService]
