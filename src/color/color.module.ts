@@ -1,7 +1,19 @@
 import { Module } from '@nestjs/common'
 import { ColorController } from './color.controller'
+import { MongooseModule } from '@nestjs/mongoose'
+import { Color, ColorSchema } from './color.schema'
+import { ColorService } from './color.service'
 
 @Module({
-	controllers: [ColorController]
+	imports: [
+		MongooseModule.forFeature([
+			{
+				name: Color.name,
+				schema: ColorSchema
+			}
+		])
+	],
+	controllers: [ColorController],
+	providers: [ColorService]
 })
 export class ColorModule {}
