@@ -20,6 +20,7 @@ rootRouter.use('/statistic', StatisticRouter)
 /* XXX: Disable AuthorizationRouter: Migrating to nest*/
 // rootRouter.use('/authorization', AuthorizationRouter)
 
-rootRouter.use('/initialize', InitializeRouter)
+/* XXX: Disable InitializeRouter: Migrating to nest*/
+// rootRouter.use('/initialize', InitializeRouter)
 
 export default rootRouter

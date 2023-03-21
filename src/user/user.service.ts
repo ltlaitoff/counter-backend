@@ -1,7 +1,7 @@
 import { Body, Injectable } from '@nestjs/common'
 
 import { InjectModel } from '@nestjs/mongoose'
-import { Model, ObjectId } from 'mongoose'
+import mongoose, { Model, ObjectId } from 'mongoose'
 import { IUser } from './user.interface'
 import { User } from './user.schema'
 import { CreateUserDto } from './dto/create-user.dto'
@@ -27,7 +27,7 @@ export class UserService {
 	}
 
 	async find(
-		data: Partial<User & { _id: string | ObjectId }>
+		data: Partial<User & { _id: string | ObjectId | mongoose.Types.ObjectId }>
 	): Promise<IUser | null> {
 		return await this.userModel.findOne(data).lean()
 	}
