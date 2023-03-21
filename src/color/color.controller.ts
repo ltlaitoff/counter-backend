@@ -2,7 +2,7 @@ import { Controller, Get } from '@nestjs/common'
 import { ColorService } from './color.service'
 import { Color } from './color.schema'
 
-@Controller('new/color')
+@Controller('color')
 export class ColorController {
 	constructor(private colorService: ColorService) {}
 

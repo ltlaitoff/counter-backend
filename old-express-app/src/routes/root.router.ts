@@ -4,7 +4,7 @@ import { Router } from 'express'
 import { CategoryRouter } from '../Category'
 import { StatisticRouter } from '../Statistic'
 // import { AuthorizationRouter } from '../Authorization'
-import { InitializeRouter } from '../Initialize'
+// import { InitializeRouter } from '../Initialize'
 import { HomeRouter } from './home.route'
 
 const rootRouter = Router()
