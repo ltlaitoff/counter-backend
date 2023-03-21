@@ -20,21 +20,13 @@ const MongoStore = require('connect-mongo')
 	TODO: Create middleware for print to console requests:
 		[TYPE] User /../..
 */
-declare module 'express-session' {
-	interface SessionData {
-		authorized: boolean
-		userId: ObjectId
-	}
-}
 
-if (process.env.NODE_ENV === 'production') {
-	serverDebugMessage('PRODUCTION')
-	// dotenv.config()
-} else {
-	serverDebugMessage('DEVELOPMENT')
-	// console.log(dotenv)
-	// dotenv.config({ path: `${process.cwd()}/.env.development` })
-}
+// declare module 'express-session' {
+// 	interface SessionData {
+// 		authorized: boolean
+// 		userId: ObjectId
+// 	}
+// }
 
 mongoose.set('strictQuery', true)
 

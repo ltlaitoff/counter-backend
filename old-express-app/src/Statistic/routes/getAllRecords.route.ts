@@ -12,7 +12,7 @@ export const getAllRecordsRoute = async (req: Request, res: Response) => {
 	if (userId === null) {
 		return unauthorizedError(res)
 	}
-
+	// @ts-expect-error rewrite
 	const result = await StatisticServices.findRecords({ user: userId })
 
 	return res.status(HttpStatusCode.OK).json(result)

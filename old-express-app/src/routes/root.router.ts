@@ -3,7 +3,7 @@ import { Router } from 'express'
 // import { ColorRouter } from '../Color'
 import { CategoryRouter } from '../Category'
 import { StatisticRouter } from '../Statistic'
-import { AuthorizationRouter } from '../Authorization'
+// import { AuthorizationRouter } from '../Authorization'
 import { InitializeRouter } from '../Initialize'
 import { HomeRouter } from './home.route'
 
@@ -16,7 +16,10 @@ rootRouter.use('/', HomeRouter)
 
 rootRouter.use('/category', CategoryRouter)
 rootRouter.use('/statistic', StatisticRouter)
-rootRouter.use('/authorization', AuthorizationRouter)
+
+/* XXX: Disable AuthorizationRouter: Migrating to nest*/
+// rootRouter.use('/authorization', AuthorizationRouter)
+
 rootRouter.use('/initialize', InitializeRouter)
 
 export default rootRouter

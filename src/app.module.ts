@@ -5,7 +5,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config'
 import { ColorModule } from './color/color.module'
 import { MongooseModule } from '@nestjs/mongoose'
 import { environmentConfig } from './config/environment.config'
-import { UserModule } from './user/user.module';
+import { UserModule } from './user/user.module'
+import { AuthModule } from './auth/auth.module'
 
 @Module({
 	imports: [
@@ -24,7 +25,8 @@ import { UserModule } from './user/user.module';
 			})
 		}),
 		ColorModule,
-		UserModule
+		UserModule,
+		AuthModule
 	],
 	controllers: [AppController],
 	providers: [AppService]

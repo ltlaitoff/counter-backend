@@ -6,7 +6,7 @@ export const initializeRoute = async (req: Request, res: Response) => {
 	if (!req.session.authorized || !req.session.userId) {
 		return res.status(HttpStatusCode.OK).json({ authorized: false })
 	}
-
+	// @ts-expect-error rewrite
 	const user = await UserHelpers.getUserById(req.session.userId)
 
 	res.status(HttpStatusCode.OK).json({
