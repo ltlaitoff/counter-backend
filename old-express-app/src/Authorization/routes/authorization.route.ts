@@ -34,7 +34,9 @@ export const authorizationRoute = (req: Request, res: Response) => {
 
 			UserHelpers.findOrCreateUser(userData)
 				.then(value => {
+					// @ts-expect-error rewrite
 					req.session.authorized = true
+					// @ts-expect-error rewrite
 					req.session.userId = value._id
 
 					console.log(req.session, value._id)

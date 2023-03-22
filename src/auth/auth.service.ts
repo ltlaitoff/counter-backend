@@ -13,8 +13,10 @@ export class AuthService {
 	): Promise<any> {
 		const userDocument = await this.userService.findOrCreate(user)
 
-		session.authorized = true
-		session.userId = userDocument._id
+		session.auth = {
+			authorized: true,
+			userId: userDocument._id
+		}
 
 		return { authorized: true, ...userDocument }
 	}
