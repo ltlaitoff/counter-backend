@@ -8,7 +8,8 @@ import { environmentConfig } from './config/environment.config'
 import { UserModule } from './user/user.module'
 import { AuthModule } from './auth/auth.module'
 import { InitializeModule } from './initialize/initialize.module'
-import { CategoryModule } from './category/category.module';
+import { CategoryModule } from './category/category.module'
+import { StatisticModule } from './statistic/statistic.module'
 
 @Module({
 	imports: [
@@ -30,7 +31,8 @@ import { CategoryModule } from './category/category.module';
 		UserModule,
 		AuthModule,
 		InitializeModule,
-		CategoryModule
+		CategoryModule,
+		StatisticModule
 	],
 	controllers: [AppController],
 	providers: [AppService]
