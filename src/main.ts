@@ -16,7 +16,9 @@ async function bootstrap() {
 		origin: [
 			'http://localhost:4200',
 			'https://localhost:4200',
-			'https://ltlaitoff.github.io'
+			'https://ltlaitoff.github.io',
+			'https://counter-git-dev-ltlaitoff.vercel.app',
+			'https://counter-ltlaitoff.vercel.app'
 		],
 		methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
 		credentials: true
