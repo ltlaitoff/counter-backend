@@ -3,12 +3,8 @@ import path from 'node:path'
 
 const getHttpsOptions = () => {
 	return {
-		key: fs.readFileSync(
-			path.resolve(__dirname, '../../../certs/selfsigned.key')
-		),
-		cert: fs.readFileSync(
-			path.resolve(__dirname, '../../../certs/selfsigned.crt')
-		)
+		key: fs.readFileSync(path.resolve(__dirname, '../../certs/selfsigned.key')),
+		cert: fs.readFileSync(path.resolve(__dirname, '../../certs/selfsigned.crt'))
 	}
 }
 
