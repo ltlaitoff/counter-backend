@@ -1,20 +1,16 @@
 import { NestFactory } from '@nestjs/core'
 import { AppModule } from './app.module'
-import { ExpressAdapter } from '@nestjs/platform-express'
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger'
 
-import expressApp from '../old-express-app/src'
 import { getHttpsOptions } from './helpers/getHttpsOptions.helper'
 import { COOKIE_MAX_AGE } from './config/constants.config'
 import session from 'express-session'
 import MongoStore from 'connect-mongo'
 
 async function bootstrap() {
-	const app = await NestFactory.create(
-		AppModule,
-		// new ExpressAdapter(expressApp),
-		{ httpsOptions: process.env.NODE_ENV ? undefined : getHttpsOptions() }
-	)
+	const app = await NestFactory.create(AppModule, {
+		httpsOptions: process.env.NODE_ENV ? undefined : getHttpsOptions()
+	})
 
 	app.enableCors({
 		origin: [
