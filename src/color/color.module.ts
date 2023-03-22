@@ -14,6 +14,7 @@ import { ColorService } from './color.service'
 		])
 	],
 	controllers: [ColorController],
-	providers: [ColorService]
+	providers: [ColorService],
+	exports: [ColorService]
 })
 export class ColorModule {}

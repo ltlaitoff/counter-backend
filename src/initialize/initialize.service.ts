@@ -7,7 +7,7 @@ export class InitializeService {
 	constructor(private userService: UserService) {}
 
 	initialize(session: SessionData) {
-		if (!session.auth.authorized || !session.auth.userId) {
+		if (!session.auth?.authorized || !session.auth?.userId) {
 			return { authorized: false }
 		}
 

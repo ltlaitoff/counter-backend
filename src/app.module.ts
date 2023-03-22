@@ -8,6 +8,7 @@ import { environmentConfig } from './config/environment.config'
 import { UserModule } from './user/user.module'
 import { AuthModule } from './auth/auth.module'
 import { InitializeModule } from './initialize/initialize.module'
+import { CategoryModule } from './category/category.module';
 
 @Module({
 	imports: [
@@ -28,7 +29,8 @@ import { InitializeModule } from './initialize/initialize.module'
 		ColorModule,
 		UserModule,
 		AuthModule,
-		InitializeModule
+		InitializeModule,
+		CategoryModule
 	],
 	controllers: [AppController],
 	providers: [AppService]

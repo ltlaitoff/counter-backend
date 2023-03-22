@@ -19,7 +19,6 @@ export const getByRecordIdRoute = async (
 
 	const result = await StatisticServices.findRecord({
 		_id: recordId,
-		// @ts-expect-error rewrite
 		user: userId
 	})
 

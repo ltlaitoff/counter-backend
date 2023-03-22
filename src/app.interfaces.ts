@@ -1,8 +1,12 @@
-import mongoose, { ObjectId } from 'mongoose'
+import mongoose from 'mongoose'
+
+export type UserIdSession =
+	| mongoose.Schema.Types.ObjectId
+	| mongoose.Types.ObjectId
 
 type SessionDataAuthorized = {
 	authorized: true
-	userId: ObjectId | mongoose.Types.ObjectId
+	userId: UserIdSession
 }
 
 type SessionDataNotAuthorized = {
@@ -14,6 +18,6 @@ type SessionDataAuth = SessionDataAuthorized | SessionDataNotAuthorized
 
 declare module 'express-session' {
 	interface SessionData {
-		auth: SessionDataAuth
+		auth?: SessionDataAuth
 	}
 }

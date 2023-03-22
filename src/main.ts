@@ -12,7 +12,7 @@ import MongoStore from 'connect-mongo'
 async function bootstrap() {
 	const app = await NestFactory.create(
 		AppModule,
-		new ExpressAdapter(expressApp),
+		// new ExpressAdapter(expressApp),
 		{ httpsOptions: process.env.NODE_ENV ? undefined : getHttpsOptions() }
 	)
 

@@ -3,6 +3,7 @@ import { HttpStatusCode } from '../../types'
 import { UserHelpers } from '../../User'
 
 export const initializeRoute = async (req: Request, res: Response) => {
+	// @ts-expect-error rewrite
 	if (!req.session.authorized || !req.session.userId) {
 		return res.status(HttpStatusCode.OK).json({ authorized: false })
 	}

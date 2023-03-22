@@ -73,11 +73,11 @@ export class ColorService {
 
 		colorItems.forEach(item => {
 			if (item._id) {
-				resultObject[item.name] = item._id
+				resultObject[item.name] = item._id.toString()
 			}
 		})
 
-		return resultObject as { [key in ColorsNames]: ObjectId }
+		return resultObject as { [key in ColorsNames]: string }
 	}
 
 	private async createOrUpdateColors(all: IColor[], defaults: Color[]) {

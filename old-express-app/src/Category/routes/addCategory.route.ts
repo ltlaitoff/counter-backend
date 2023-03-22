@@ -52,7 +52,6 @@ export const addCategoryRoute = async (req: Request, res: Response) => {
 	const dataForAdd: Omit<CategoryTypes.Category, 'color'> & {
 		color: string
 	} = {
-		// @ts-expect-error rewrite
 		user: userId,
 		...validBodyData,
 		order: lastOrderId === null ? 0 : lastOrderId + 1

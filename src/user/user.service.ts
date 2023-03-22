@@ -5,10 +5,14 @@ import mongoose, { Model, ObjectId } from 'mongoose'
 import { IUser } from './user.interface'
 import { User } from './user.schema'
 import { CreateUserDto } from './dto/create-user.dto'
+import { CategoryService } from '../category/category.service'
 
 @Injectable()
 export class UserService {
-	constructor(@InjectModel(User.name) private userModel: Model<IUser>) {}
+	constructor(
+		@InjectModel(User.name) private userModel: Model<IUser>,
+		private categoryService: CategoryService
+	) {}
 
 	async create(
 		@Body() createUserDto: CreateUserDto,
@@ -20,7 +24,7 @@ export class UserService {
 
 		if (options.intializeDefaultCategories) {
 			// TODO: Uncomment after migrate categories
-			// CategoryHelpers.intializeUserDefaultCategories(newUser._id)
+			this.categoryService.intializeUserDefaultCategories(newUser._id)
 		}
 
 		return newUser.save()
