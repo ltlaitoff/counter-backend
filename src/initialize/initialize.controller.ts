@@ -9,9 +9,9 @@ export class InitializeController {
 	constructor(private initializeService: InitializeService) {}
 
 	@Get()
-	initialize(@Session() session: SessionData, @Res() res: Response) {
+	async initialize(@Session() session: SessionData, @Res() res: Response) {
 		res
 			.status(HttpStatusCode.OK)
-			.json(this.initializeService.initialize(session))
+			.json(await this.initializeService.initialize(session))
 	}
 }
