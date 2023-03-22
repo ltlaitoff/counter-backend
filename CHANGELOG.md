@@ -11,6 +11,8 @@
 Millestone [v1.0.0](https://github.com/ltlaitoff/counter-backend/milestone/3)
 
 - Migrate to nest.js [#42](https://github.com/ltlaitoff/counter-backend/issues/42)
+- Create route for initialize colors [#44](https://github.com/ltlaitoff/counter-backend/issues/44)
+- Create logout route [#45](https://github.com/ltlaitoff/counter-backend/issues/45)
 
 ## v0.0.2 - 12.03
 
