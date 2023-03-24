@@ -36,7 +36,11 @@ export class StatisticService {
 	async add(body: CreateStatisticDto, userId: UserIdSession) {
 		const dataForAdd = {
 			user: userId,
-			...body
+			date: body.date,
+			count: body.count,
+			comment: body.comment,
+			category: body.category,
+			summ: body.summ
 		}
 
 		const newStatistic = await new this.statisticModel(dataForAdd)
