@@ -39,4 +39,13 @@ export class AuthController {
 
 		res.status(HttpStatus.OK).json(userDocument)
 	}
+
+	@Post('logout')
+	async logout(@Req() req: Request, @Res() res: Response) {
+		req.session.destroy(err => {
+			console.log('destroy user session error:', err)
+		})
+
+		res.status(HttpStatus.OK).json({ status: 'ok' })
+	}
 }
