@@ -6,6 +6,7 @@ import {
 	HttpStatus,
 	Param,
 	Post,
+	Put,
 	Res,
 	Session
 } from '@nestjs/common'
@@ -14,13 +15,7 @@ import { CategoryService } from './category.service'
 import { SessionData } from 'express-session'
 import { Response } from 'express'
 import { CreateCategoryDto } from './dto/create-category.dto'
-
-/*
-Routes:
-
-'/add', addCategory, post
-'/:id', deleteCategory, delete
-*/
+import { UpdateCategoryDto } from './dto/update-category.dto'
 
 @Controller('category')
 export class CategoryController {
@@ -68,5 +63,32 @@ export class CategoryController {
 		res
 			.status(HttpStatus.OK)
 			.json(await this.categoryService.delete(id, session.auth.userId))
+	}
+
+	@Put(':id')
+	async put(
+		@Param('id') id: string,
+		@Body() body: UpdateCategoryDto,
+		@Session() session: SessionData,
+		@Res() res: Response
+	) {
+		if (session.auth === undefined || !session.auth.authorized) {
+			res.status(HttpStatus.UNAUTHORIZED).json({ message: 'Unauthorized' })
+			return
+		}
+
+		const result = await this.categoryService.edit(
+			id,
+			body,
+			session.auth.userId
+		)
+
+		if (result === null) {
+			return res
+				.status(HttpStatus.BAD_REQUEST)
+				.json({ message: 'Something gonna wrong' })
+		}
+
+		res.status(HttpStatus.OK).json(result)
 	}
 }

@@ -7,6 +7,7 @@ import { CreateCategoryDto } from './dto/create-category.dto'
 import { ColorService } from '../color/color.service'
 import { DEFAULT_CATEGORIES, PROJECTIONS } from './category.config'
 import { UserIdSession } from 'src/app.interfaces'
+import { UpdateCategoryDto } from './dto/update-category.dto'
 
 @Injectable()
 export class CategoryService {
@@ -57,6 +58,25 @@ export class CategoryService {
 			_id: id,
 			user: userId
 		})
+	}
+
+	async edit(id: string, body: UpdateCategoryDto, userId: UserIdSession) {
+		const updatedCategory = await this.categoryModel.findByIdAndUpdate(
+			{ _id: id, user: userId },
+			body,
+			{ new: true }
+		)
+
+		if (!updatedCategory) {
+			return null
+		}
+
+		const updatedCategoryDocument = await updatedCategory.save()
+
+		// XXX: Remove populate after rework fronend
+		await updatedCategoryDocument.populate('color', PROJECTIONS)
+
+		return updatedCategoryDocument
 	}
 
 	private async getLastOrder(userId: UserIdSession) {
