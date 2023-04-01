@@ -6,12 +6,14 @@ import {
 	HttpStatus,
 	Param,
 	Post,
+	Put,
 	Res,
 	Session
 } from '@nestjs/common'
 import { Response } from 'express'
 import { SessionData } from 'express-session'
 import { CreateStatisticDto } from './dto/create-statistic.dto'
+import { UpdateStatisticDto } from './dto/update-statistic.dto'
 import { StatisticService } from './statistic.service'
 
 /*
@@ -83,5 +85,32 @@ export class StatisticController {
 		res
 			.status(HttpStatus.OK)
 			.json(await this.statisticService.delete(id, session.auth.userId))
+	}
+
+	@Put(':id')
+	async put(
+		@Param('id') id: string,
+		@Body() body: UpdateStatisticDto,
+		@Session() session: SessionData,
+		@Res() res: Response
+	) {
+		if (session.auth === undefined || !session.auth.authorized) {
+			res.status(HttpStatus.UNAUTHORIZED).json({ message: 'Unauthorized' })
+			return
+		}
+
+		const result = await this.statisticService.edit(
+			id,
+			body,
+			session.auth.userId
+		)
+
+		if (result === null) {
+			return res
+				.status(HttpStatus.BAD_REQUEST)
+				.json({ message: 'Something gonna wrong' })
+		}
+
+		res.status(HttpStatus.OK).json(result)
 	}
 }

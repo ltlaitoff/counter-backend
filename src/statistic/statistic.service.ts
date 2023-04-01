@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/mongoose'
 import { Model } from 'mongoose'
 import { UserIdSession } from 'src/app.interfaces'
 import { CreateStatisticDto } from './dto/create-statistic.dto'
+import { UpdateStatisticDto } from './dto/update-statistic.dto'
 import { PROJECTIONS } from './statistic.config'
 import { IStatistic } from './statistic.interface'
 import { Statistic } from './statistic.schema'
@@ -61,5 +62,27 @@ export class StatisticService {
 			_id: id,
 			user: userId
 		})
+	}
+
+	async edit(id: string, body: UpdateStatisticDto, userId: UserIdSession) {
+		const updatedStatistic = await this.statisticModel.findByIdAndUpdate(
+			{ _id: id, user: userId },
+			body,
+			{ new: true }
+		)
+
+		if (!updatedStatistic) {
+			return null
+		}
+
+		const updatedStatisticDocument = await updatedStatistic.save()
+
+		// XXX: Remove populate after rework fronend
+		await updatedStatisticDocument.populate({
+			path: 'category',
+			populate: { path: 'color' }
+		})
+
+		return updatedStatisticDocument
 	}
 }
