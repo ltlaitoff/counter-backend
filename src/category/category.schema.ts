@@ -20,6 +20,9 @@ export class Category {
 
 	@Prop({ required: true })
 	order: number
+
+	@Prop()
+	dimension?: string
 }
 
 export const CategorySchema = SchemaFactory.createForClass(Category)

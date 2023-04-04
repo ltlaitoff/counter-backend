@@ -8,7 +8,6 @@ export class CreateCategoryDto {
 	name: string
 
 	@ApiProperty()
-	@IsNotEmpty()
 	@IsString()
 	comment?: string
 
@@ -16,4 +15,8 @@ export class CreateCategoryDto {
 	@IsNotEmpty()
 	@IsString()
 	color: string
+
+	@ApiProperty()
+	@IsString()
+	dimension?: string
 }
