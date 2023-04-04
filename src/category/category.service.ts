@@ -28,6 +28,7 @@ export class CategoryService {
 			name: createCategoryDto.name,
 			color: createCategoryDto.color,
 			comment: createCategoryDto.comment,
+			dimension: createCategoryDto.dimension,
 			order: lastOrderId === null ? 0 : lastOrderId + 1
 		}
 
