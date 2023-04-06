@@ -36,9 +36,6 @@ export class CategoryService {
 
 		const newCategoryDocument = await newCategory.save()
 
-		// XXX: Remove populate after rework fronend
-		await newCategoryDocument.populate('color', PROJECTIONS)
-
 		return newCategoryDocument
 	}
 
@@ -47,9 +44,6 @@ export class CategoryService {
 			{ user: userId },
 			PROJECTIONS
 		)
-
-		// XXX: Remove populate after rework fronend
-		userAllCategories.populate('color', PROJECTIONS)
 
 		return await userAllCategories.lean()
 	}
@@ -73,9 +67,6 @@ export class CategoryService {
 		}
 
 		const updatedCategoryDocument = await updatedCategory.save()
-
-		// XXX: Remove populate after rework fronend
-		await updatedCategoryDocument.populate('color', PROJECTIONS)
 
 		return updatedCategoryDocument
 	}
