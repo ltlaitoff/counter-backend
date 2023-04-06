@@ -19,12 +19,6 @@ export class StatisticService {
 			.find({ user: userId }, PROJECTIONS)
 			.lean()
 
-		// XXX: Remove populate after rework frontend
-		userAllStastistic.populate({
-			path: 'category',
-			populate: { path: 'color' }
-		})
-
 		return await userAllStastistic.lean()
 	}
 
@@ -48,12 +42,6 @@ export class StatisticService {
 
 		const newStatisticDocument = await newStatistic.save()
 
-		// XXX: Remove populate after rework fronend
-		await newStatisticDocument.populate({
-			path: 'category',
-			populate: { path: 'color' }
-		})
-
 		return newStatisticDocument
 	}
 
@@ -76,12 +64,6 @@ export class StatisticService {
 		}
 
 		const updatedStatisticDocument = await updatedStatistic.save()
-
-		// XXX: Remove populate after rework fronend
-		await updatedStatisticDocument.populate({
-			path: 'category',
-			populate: { path: 'color' }
-		})
 
 		return updatedStatisticDocument
 	}
