@@ -8,6 +8,7 @@ import { ColorService } from '../color/color.service'
 import { DEFAULT_CATEGORIES, PROJECTIONS } from './category.config'
 import { UserIdSession } from 'src/app.interfaces'
 import { UpdateCategoryDto } from './dto/update-category.dto'
+import { ReorderCategoryDto } from './dto/reorder-category.dto'
 
 @Injectable()
 export class CategoryService {
@@ -94,4 +95,144 @@ export class CategoryService {
 			return this.add(defaultCategory, userId)
 		})
 	}
+
+	/* reorder */
+	async reorder(
+		body: ReorderCategoryDto,
+		userId: UserIdSession
+	): Promise<ReorderCategoryDto[] | null> {
+		if (body.currentIndex === body.previousIndex) return null
+
+		const categoriesForUpdateOrder = await this.getCategoriesByOrderInRange(
+			userId,
+			body.previousIndex,
+			body.currentIndex
+		)
+
+		const updatedCategoriesForUpdateOrder = await this.changeCategoriesOrders(
+			categoriesForUpdateOrder,
+			body.previousIndex
+		)
+
+		const result: ReorderCategoryDto[] = await this.transformToReorderResult(
+			updatedCategoriesForUpdateOrder
+		)
+
+		await this.updateOrders(result, userId)
+
+		return result
+	}
+
+	private async getCategoriesByOrderInRange(
+		userId: UserIdSession,
+		previousIndex: number,
+		currentIndex: number
+	): Promise<ICategory[]> {
+		const order =
+			previousIndex < currentIndex
+				? { $gte: previousIndex, $lte: currentIndex }
+				: { $gte: currentIndex, $lte: previousIndex }
+
+		const sort = {
+			order: previousIndex < currentIndex ? 1 : -1
+		}
+
+		return await this.categoryModel
+			.find(
+				{
+					order: order,
+					user: userId
+				},
+				{},
+				{
+					sort: sort
+				}
+			)
+			.lean()
+	}
+
+	private async changeCategoriesOrders(
+		categories: (ICategory & { previousIndex?: number })[],
+		previousIndex: number
+	) {
+		const lastIndex = categories.at(-1)?.order
+
+		if (lastIndex === undefined) {
+			throw new Error('ERR')
+		}
+
+		for (let i = categories.length - 2; i >= 0; i--) {
+			const currentElement = categories.at(i)
+
+			const indexNextElement = i + 1 > categories.length - 1 ? 0 : i + 1
+			const nextElement = categories.at(indexNextElement)
+
+			if (currentElement === undefined || nextElement === undefined) {
+				throw new Error(
+					`currentElement || nextElement is undefined in reorder. categories = ${JSON.stringify(
+						categories
+					)}`
+				)
+			}
+
+			nextElement.previousIndex = nextElement.order
+			nextElement.order = currentElement.order
+		}
+
+		categories[0].previousIndex = previousIndex
+		categories[0].order = lastIndex
+
+		return categories
+	}
+
+	private async transformToReorderResult(
+		categories: (ICategory & { previousIndex?: number })[]
+	): Promise<ReorderCategoryDto[]> {
+		return categories.map(item => {
+			if (!item.previousIndex) {
+				throw new Error(
+					`item.previousIndex is undefined in transformToReorderResult. categories = ${JSON.stringify(
+						categories
+					)}`
+				)
+			}
+
+			return {
+				categoryId: item._id.toString(),
+				currentIndex: item.order,
+				previousIndex: item.previousIndex
+			}
+		})
+	}
+
+	private async updateOrders(
+		categories: ReorderCategoryDto[],
+		userId: UserIdSession
+	) {
+		await Promise.all(
+			categories.map(async item => {
+				const updatedCategory = await this.categoryModel
+					.findByIdAndUpdate(
+						{ _id: item.categoryId, user: userId },
+						{
+							order: item.currentIndex
+						},
+						{ new: true }
+					)
+					.lean()
+
+				if (!updatedCategory) {
+					throw new Error(
+						`Error update categories reorder. Category = ${JSON.stringify(
+							item
+						)}`
+					)
+				}
+
+				return updatedCategory
+			})
+		)
+	}
+
+	/* reorder end */
 }
