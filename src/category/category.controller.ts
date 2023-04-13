@@ -16,6 +16,7 @@ import { SessionData } from 'express-session'
 import { Response } from 'express'
 import { CreateCategoryDto } from './dto/create-category.dto'
 import { UpdateCategoryDto } from './dto/update-category.dto'
+import { ReorderCategoryDto } from './dto/reorder-category.dto'
 
 @Controller('category')
 export class CategoryController {
@@ -63,6 +64,28 @@ export class CategoryController {
 		res
 			.status(HttpStatus.OK)
 			.json(await this.categoryService.delete(id, session.auth.userId))
+	}
+
+	@Put('reorder')
+	async reorder(
+		@Body() body: ReorderCategoryDto,
+		@Session() session: SessionData,
+		@Res() res: Response
+	) {
+		if (session.auth === undefined || !session.auth.authorized) {
+			res.status(HttpStatus.UNAUTHORIZED).json({ message: 'Unauthorized' })
+			return
+		}
+
+		const result = await this.categoryService.reorder(body, session.auth.userId)
+
+		if (result === null) {
+			return res
+				.status(HttpStatus.BAD_REQUEST)
+				.json({ message: 'Something gonna wrong' })
+		}
+
+		res.status(HttpStatus.OK).json(result)
 	}
 
 	@Put(':id')
