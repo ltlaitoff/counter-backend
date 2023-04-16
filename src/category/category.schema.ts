@@ -3,6 +3,7 @@ import mongoose from 'mongoose'
 
 import { Color } from 'src/color/color.schema'
 import { User } from 'src/user/user.schema'
+import { Group } from 'src/category-group/category-group.schema'
 
 @Schema()
 export class Category {
@@ -23,6 +24,9 @@ export class Category {
 
 	@Prop()
 	dimension?: string
+
+	@Prop({ type: [mongoose.Schema.Types.ObjectId], ref: 'Group' })
+	group?: [Group]
 }
 
 export const CategorySchema = SchemaFactory.createForClass(Category)
