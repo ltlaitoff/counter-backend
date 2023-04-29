@@ -6,4 +6,9 @@ export class CreateCategoryGroupDto {
 	@IsNotEmpty()
 	@IsString()
 	name: string
+
+	@ApiProperty()
+	@IsNotEmpty()
+	@IsString()
+	color: string
 }
