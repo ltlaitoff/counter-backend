@@ -15,6 +15,7 @@ import { SessionData } from 'express-session'
 import { CategoryGroupService } from './category-group.service'
 import { CreateCategoryGroupDto } from './dto/create-category-group.dto'
 import { UpdateCategoryGroupDto } from './dto/update-category-group.dto'
+import { ReorderCategoryGroupDto } from './dto/reorder-category-group.dto'
 
 @Controller('group')
 export class CategoryGroupController {
@@ -46,6 +47,31 @@ export class CategoryGroupController {
 		res
 			.status(HttpStatus.OK)
 			.json(await this.categoryGroupService.add(body, session.auth.userId))
+	}
+
+	@Put('reorder')
+	async reorder(
+		@Body() body: ReorderCategoryGroupDto,
+		@Session() session: SessionData,
+		@Res() res: Response
+	) {
+		if (session.auth === undefined || !session.auth.authorized) {
+			res.status(HttpStatus.UNAUTHORIZED).json({ message: 'Unauthorized' })
+			return
+		}
+
+		const result = await this.categoryGroupService.reorder(
+			body,
+			session.auth.userId
+		)
+
+		if (result === null) {
+			return res
+				.status(HttpStatus.BAD_REQUEST)
+				.json({ message: 'Something gonna wrong' })
+		}
+
+		res.status(HttpStatus.OK).json(result)
 	}
 
 	@Put(':id')

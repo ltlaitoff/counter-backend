@@ -9,6 +9,9 @@ export class Group {
 
 	@Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Color', required: true })
 	color: Color
+
+	@Prop({ required: true })
+	order: number
 }
 
 export const GroupSchema = SchemaFactory.createForClass(Group)
