@@ -22,5 +22,5 @@ export class CreateCategoryDto {
 
 	@ApiProperty()
 	@IsArray()
-	group?: [string]
+	group?: string[]
 }
