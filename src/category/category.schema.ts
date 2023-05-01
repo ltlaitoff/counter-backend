@@ -25,8 +25,13 @@ export class Category {
 	@Prop()
 	dimension?: string
 
-	@Prop({ type: [mongoose.Schema.Types.ObjectId], ref: 'Group' })
-	group?: [Group]
+	@Prop({
+		type: [mongoose.Schema.Types.ObjectId],
+		ref: 'Group',
+		required: true,
+		default: []
+	})
+	group: [Group]
 }
 
 export const CategorySchema = SchemaFactory.createForClass(Category)
