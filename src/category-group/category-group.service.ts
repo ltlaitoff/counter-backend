@@ -21,16 +21,24 @@ export class CategoryGroupService {
 			PROJECTIONS
 		)
 
-		return await userAllCategories.lean()
+		const result = await userAllCategories.lean()
+
+		console.log(result)
+
+		return result
 	}
 
 	async add(
 		@Body() createCategoryGroupDto: CreateCategoryGroupDto,
 		userId: UserIdSession
 	) {
+		const lastOrderId = await this.getLastOrder(userId)
+
 		const dataForAdd = {
 			user: userId,
-			name: createCategoryGroupDto.name
+			name: createCategoryGroupDto.name,
+			color: createCategoryGroupDto.color,
+			order: lastOrderId === null ? 0 : lastOrderId + 1
 		}
 
 		const newCategoryGroup = await new this.categoryGroupModel(dataForAdd)
@@ -201,4 +209,16 @@ export class CategoryGroupService {
 	}
 
 	/* reorder end */
+
+	private async getLastOrder(userId: UserIdSession) {
+		const allUserCategoryGroups = await this.getAll(userId)
+
+		const result = allUserCategoryGroups.reduce(
+			(prev, categoryGroup) =>
+				categoryGroup.order > prev ? categoryGroup.order : prev,
+			-1
+		)
+
+		return result === -1 ? null : result
+	}
 }
