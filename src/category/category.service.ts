@@ -235,4 +235,25 @@ export class CategoryService {
 	}
 
 	/* reorder end */
+	async updateCategoryFields(): Promise<unknown> {
+		const result = []
+
+		/* Group */
+		result.push({
+			group: await this.categoryModel.updateMany(
+				{ group: { $exists: false } },
+				{ $set: { group: [] } }
+			)
+		})
+
+		/* dimension */
+		result.push({
+			dimension: await this.categoryModel.updateMany(
+				{ dimension: { $exists: false } },
+				{ $set: { dimension: '' } }
+			)
+		})
+
+		return result
+	}
 }

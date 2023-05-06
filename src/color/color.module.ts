@@ -3,11 +3,8 @@ import { ColorController } from './color.controller'
 import { MongooseModule } from '@nestjs/mongoose'
 import { Color, ColorSchema } from './color.schema'
 import { ColorService } from './color.service'
-import { ConfigModule } from '@nestjs/config'
-
 @Module({
 	imports: [
-		ConfigModule,
 		MongooseModule.forFeature([
 			{
 				name: Color.name,
