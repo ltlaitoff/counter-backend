@@ -10,6 +10,8 @@ import { AuthModule } from './auth/auth.module'
 import { InitializeModule } from './initialize/initialize.module'
 import { CategoryModule } from './category/category.module'
 import { StatisticModule } from './statistic/statistic.module'
+import { CategoryGroupModule } from './category-group/category-group.module'
+import { AdminModule } from './admin/admin.module'
 
 @Module({
 	imports: [
@@ -32,7 +34,9 @@ import { StatisticModule } from './statistic/statistic.module'
 		AuthModule,
 		InitializeModule,
 		CategoryModule,
-		StatisticModule
+		StatisticModule,
+		CategoryGroupModule,
+		AdminModule
 	],
 	controllers: [AppController],
 	providers: [AppService]

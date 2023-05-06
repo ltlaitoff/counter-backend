@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## v1.1.0 - 06.05
+
+Millestone [v1.1.0](https://github.com/ltlaitoff/counter-backend/milestone/4)
+
+- Fix change statistic bug [#62](https://github.com/ltlaitoff/counter-backend/issues/62)
+- Create category-groups [#57](https://github.com/ltlaitoff/counter-backend/issues/57)
+- Add dimension field to category [#52](https://github.com/ltlaitoff/counter-backend/issues/52)
+- Remove populating data [#51](https://github.com/ltlaitoff/counter-backend/issues/51)
+- Create categories reorder route [#31](https://github.com/ltlaitoff/counter-backend/issues/31)
+
 ## v1.0.0
 
 Millestone [v1.0.0](https://github.com/ltlaitoff/counter-backend/milestone/3)
