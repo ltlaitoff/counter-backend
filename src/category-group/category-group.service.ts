@@ -163,7 +163,7 @@ export class CategoryGroupService {
 		categories: (IGroup & { previousIndex?: number })[]
 	): Promise<ReorderCategoryGroupDto[]> {
 		return categories.map(item => {
-			if (!item.previousIndex) {
+			if (item.previousIndex == undefined) {
 				throw new Error(
 					`item.previousIndex is undefined in transformToReorderResult. categories = ${JSON.stringify(
 						categories
