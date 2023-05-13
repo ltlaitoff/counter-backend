@@ -10,6 +10,9 @@ export class Category {
 	@Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true })
 	user: User
 
+	@Prop({ required: true, default: 'number' })
+	mode: 'number' | 'type'
+
 	@Prop({ required: true })
 	name: string
 
