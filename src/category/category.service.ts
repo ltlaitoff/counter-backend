@@ -27,6 +27,7 @@ export class CategoryService {
 		const dataForAdd = {
 			user: userId,
 			name: createCategoryDto.name,
+			mode: createCategoryDto.mode || 'number',
 			color: createCategoryDto.color,
 			comment: createCategoryDto.comment,
 			dimension: createCategoryDto.dimension,
@@ -235,6 +236,7 @@ export class CategoryService {
 	}
 
 	/* reorder end */
+	/* Admins for migration */
 	async updateCategoryFields(): Promise<unknown> {
 		const result = []
 
@@ -251,6 +253,14 @@ export class CategoryService {
 			dimension: await this.categoryModel.updateMany(
 				{ dimension: { $exists: false } },
 				{ $set: { dimension: '' } }
+			)
+		})
+
+		/* mode */
+		result.push({
+			dimension: await this.categoryModel.updateMany(
+				{ mode: { $exists: false } },
+				{ $set: { mode: 'number' } }
 			)
 		})
 

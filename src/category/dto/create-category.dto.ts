@@ -9,6 +9,10 @@ export class CreateCategoryDto {
 
 	@ApiProperty()
 	@IsString()
+	mode?: 'number' | 'time'
+
+	@ApiProperty()
+	@IsString()
 	comment?: string
 
 	@ApiProperty()
