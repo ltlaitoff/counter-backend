@@ -12,6 +12,7 @@ import { CategoryModule } from './category/category.module'
 import { StatisticModule } from './statistic/statistic.module'
 import { CategoryGroupModule } from './category-group/category-group.module'
 import { AdminModule } from './admin/admin.module'
+import { SessionModule } from './session/session.module'
 
 @Module({
 	imports: [
@@ -36,7 +37,8 @@ import { AdminModule } from './admin/admin.module'
 		CategoryModule,
 		StatisticModule,
 		CategoryGroupModule,
-		AdminModule
+		AdminModule,
+		SessionModule
 	],
 	controllers: [AppController],
 	providers: [AppService]
