@@ -6,7 +6,8 @@ import {
 	HttpStatus,
 	Post,
 	BadRequestException,
-	Session
+	Session,
+	Body
 } from '@nestjs/common'
 import { Request, Response } from 'express'
 import { AuthService } from './auth.service'
@@ -14,6 +15,7 @@ import { AuthService } from './auth.service'
 import { JwtPayloadUser } from './auth.interface'
 import { JwtAuthGuard } from './guard/jwt-auth.guard'
 import { SessionData } from 'express-session'
+import { AuthDataDto } from './dto/auth-data.dto'
 
 // TODO: Create AuthorizedGuard
 
@@ -25,6 +27,7 @@ export class AuthController {
 	@UseGuards(JwtAuthGuard)
 	async auth(
 		@Req() req: Request,
+		@Body() body: AuthDataDto,
 		@Session() session: SessionData,
 		@Res() res: Response
 	) {
@@ -33,8 +36,10 @@ export class AuthController {
 		}
 
 		const userDocument = await this.authService.signIn(
+			body,
 			session,
-			req.user as JwtPayloadUser
+			req.user as JwtPayloadUser,
+			req
 		)
 
 		res.status(HttpStatus.OK).json(userDocument)
