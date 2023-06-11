@@ -7,6 +7,7 @@ import {
 	Res,
 	Session
 } from '@nestjs/common'
+import { ApiTags } from '@nestjs/swagger'
 import { Response } from 'express'
 import { SessionData } from 'express-session'
 import { SessionService } from './session.service'
@@ -15,6 +16,7 @@ import { SessionService } from './session.service'
 export class SessionController {
 	constructor(private sessionService: SessionService) {}
 
+	@ApiTags('Session')
 	@Get()
 	async get(@Session() session: SessionData, @Res() res: Response) {
 		if (session.auth === undefined || !session.auth.authorized) {
@@ -27,6 +29,7 @@ export class SessionController {
 			.json(await this.sessionService.getSessions(session))
 	}
 
+	@ApiTags('Session')
 	@Delete(':id')
 	async delete(
 		@Param('id') id: string,

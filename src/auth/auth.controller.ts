@@ -16,6 +16,7 @@ import { JwtPayloadUser } from './auth.interface'
 import { JwtAuthGuard } from './guard/jwt-auth.guard'
 import { SessionData } from 'express-session'
 import { AuthDataDto } from './dto/auth-data.dto'
+import { ApiBody, ApiResponse, ApiTags } from '@nestjs/swagger'
 
 // TODO: Create AuthorizedGuard
 
@@ -23,6 +24,8 @@ import { AuthDataDto } from './dto/auth-data.dto'
 export class AuthController {
 	constructor(private authService: AuthService) {}
 
+	@ApiTags('Authorization')
+	@ApiBody({ type: [AuthDataDto] })
 	@Post()
 	@UseGuards(JwtAuthGuard)
 	async auth(
@@ -45,6 +48,12 @@ export class AuthController {
 		res.status(HttpStatus.OK).json(userDocument)
 	}
 
+	@ApiTags('Authorization')
+	@ApiResponse({ status: 200, description: 'ok' })
+	@ApiResponse({
+		status: 200,
+		description: 'Logout successful'
+	})
 	@Post('logout')
 	async logout(@Req() req: Request, @Res() res: Response) {
 		req.session.destroy(err => {
