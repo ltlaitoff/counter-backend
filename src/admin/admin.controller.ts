@@ -3,6 +3,7 @@ import { ConfigService } from '@nestjs/config'
 import { ColorService } from 'src/color/color.service'
 import { Response } from 'express'
 import { CategoryService } from 'src/category/category.service'
+import { ApiTags } from '@nestjs/swagger'
 
 @Controller('admin')
 export class AdminController {
@@ -12,6 +13,7 @@ export class AdminController {
 		private categoryService: CategoryService
 	) {}
 
+	@ApiTags('Admin')
 	@Post('initializeColors')
 	async initializeDefaultColors(
 		@Headers('authorization') authorization: undefined | string,
@@ -41,6 +43,7 @@ export class AdminController {
 			.json(await this.colorService.initializeDefaultColors())
 	}
 
+	@ApiTags('Admin')
 	@Post('updateCategoryFields')
 	async updateCategoryFields(
 		@Headers('authorization') authorization: undefined | string,

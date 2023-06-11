@@ -7,6 +7,14 @@ export type UserIdSession =
 type SessionDataAuthorized = {
 	authorized: true
 	userId: UserIdSession
+	browserName: string
+	browserVersion: string
+	osName: string
+	osVersion: string
+	osVersionName: string
+	userAgent: string
+	platformType: string
+	dateOfCreate: number
 }
 
 type SessionDataNotAuthorized = {

@@ -16,11 +16,13 @@ import { CategoryGroupService } from './category-group.service'
 import { CreateCategoryGroupDto } from './dto/create-category-group.dto'
 import { UpdateCategoryGroupDto } from './dto/update-category-group.dto'
 import { ReorderCategoryGroupDto } from './dto/reorder-category-group.dto'
+import { ApiTags } from '@nestjs/swagger'
 
 @Controller('group')
 export class CategoryGroupController {
 	constructor(private categoryGroupService: CategoryGroupService) {}
 
+	@ApiTags('Category groups')
 	@Get('all')
 	async all(@Session() session: SessionData, @Res() res: Response) {
 		if (session.auth === undefined || !session.auth.authorized) {
@@ -33,6 +35,7 @@ export class CategoryGroupController {
 			.json(await this.categoryGroupService.getAll(session.auth.userId))
 	}
 
+	@ApiTags('Category groups')
 	@Post('add')
 	async add(
 		@Session() session: SessionData,
@@ -49,6 +52,7 @@ export class CategoryGroupController {
 			.json(await this.categoryGroupService.add(body, session.auth.userId))
 	}
 
+	@ApiTags('Category groups')
 	@Put('reorder')
 	async reorder(
 		@Body() body: ReorderCategoryGroupDto,
@@ -74,6 +78,7 @@ export class CategoryGroupController {
 		res.status(HttpStatus.OK).json(result)
 	}
 
+	@ApiTags('Category groups')
 	@Put(':id')
 	async edit(
 		@Session() session: SessionData,
@@ -101,6 +106,7 @@ export class CategoryGroupController {
 		res.status(HttpStatus.OK).json(result)
 	}
 
+	@ApiTags('Category groups')
 	@Delete(':id')
 	async delete(
 		@Session() session: SessionData,

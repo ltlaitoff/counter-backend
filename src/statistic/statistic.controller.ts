@@ -10,6 +10,7 @@ import {
 	Res,
 	Session
 } from '@nestjs/common'
+import { ApiTags } from '@nestjs/swagger'
 import { Response } from 'express'
 import { SessionData } from 'express-session'
 import { CreateStatisticDto } from './dto/create-statistic.dto'
@@ -27,6 +28,7 @@ statisticRouter.delete('/:id', StatisticRoutes.deleteRecord)
 export class StatisticController {
 	constructor(private statisticService: StatisticService) {}
 
+	@ApiTags('Statistic')
 	@Get('all')
 	async getAll(@Session() session: SessionData, @Res() res: Response) {
 		if (session.auth === undefined || !session.auth.authorized) {
@@ -39,6 +41,7 @@ export class StatisticController {
 			.json(await this.statisticService.getAll(session.auth.userId))
 	}
 
+	@ApiTags('Statistic')
 	@Get(':id')
 	async getById(
 		@Param('id') id: string,
@@ -55,6 +58,7 @@ export class StatisticController {
 			.json(await this.statisticService.getById(id, session.auth.userId))
 	}
 
+	@ApiTags('Statistic')
 	@Post('add')
 	async add(
 		@Body() body: CreateStatisticDto,
@@ -71,6 +75,7 @@ export class StatisticController {
 			.json(await this.statisticService.add(body, session.auth.userId))
 	}
 
+	@ApiTags('Statistic')
 	@Delete(':id')
 	async delete(
 		@Param('id') id: string,
@@ -87,6 +92,7 @@ export class StatisticController {
 			.json(await this.statisticService.delete(id, session.auth.userId))
 	}
 
+	@ApiTags('Statistic')
 	@Put(':id')
 	async put(
 		@Param('id') id: string,
